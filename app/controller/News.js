@@ -63,5 +63,17 @@ class SchoolNewsController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.news.getNewsList();
   }
+
+  /**
+   * @summary 查询新闻
+   * @description 获取新闻列表
+   * @router get /api/news/{type}
+   * @request path integer *type
+   * @response 200 schoolNews 查询成功
+   */
+  async findNews() {
+    const { ctx, service } = this;
+    ctx.body = await service.news.findNews(ctx.params.type);
+  }
 }
 module.exports = SchoolNewsController;

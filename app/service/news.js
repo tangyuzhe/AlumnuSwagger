@@ -50,6 +50,24 @@ class SchoolNewsService extends Service {
     }
   }
 
+  async findNews(type) {
+    const { ctx } = this;
+    const res = await ctx.model.News.findAndCountAll({
+      where: {
+        type: type
+      }
+    });
+    if (!res) {
+      ctx.throw(404, { code: 1, message: "无数据" })
+    } else {
+      return {
+        code: 0,
+        data: res.rows,
+        total: res.count,
+        message: "查询成功"
+      }
+    }
+  }
 }
 
 module.exports = SchoolNewsService;
