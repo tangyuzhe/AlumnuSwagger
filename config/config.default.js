@@ -3,6 +3,7 @@
 module.exports = appInfo => {
   const config = {};
   config.baseUrl = '/api';
+  config.uploadDir = '/app/public/upload';
   // should change to your own
   config.keys = appInfo.name + '_1490750627161_5967';
   config.cors = {
@@ -56,7 +57,7 @@ module.exports = appInfo => {
   config.cluster = {
     listen: {
       port: 7001,
-      hostname: '192.168.0.104',
+      hostname: '127.0.0.1',
 
     }
   }

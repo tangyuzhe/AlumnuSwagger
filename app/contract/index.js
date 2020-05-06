@@ -1,4 +1,8 @@
 module.exports = {
+  baseResponse: {
+    result: { type: 'boolean', required: true },
+    errorMessage: { type: 'string' },
+  },
   //定义用户类型
   User: {
     id: { type: 'number', description: 'id' },
@@ -32,5 +36,16 @@ module.exports = {
     workunit: { type: 'string', description: '工作单位' },
     post: { type: 'string', description: '职务' },
     phone: { type: 'string', description: '联系方式' }
+  },
+  schoolNews: {
+    id: { type: 'number', description: 'id' },
+    type: { type: 'number', description: '新闻类型(0-学校新闻/1-校内公告/2-校友动态)' },
+    releaser: { type: 'string', description: '发布人' },
+    release_time: { type: 'string', description: '发布时间' },
+    news_title: { type: 'string', description: '主题' },
+    news_body: { type: 'string', description: '内容' },
+    views: { type: 'number', description: '阅读次数' },
+    file: { type: 'string', description: "文件地址" }
   }
+
 }
