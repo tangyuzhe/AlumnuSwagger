@@ -50,20 +50,23 @@ class SchoolNewsService extends Service {
     }
   }
 
-  async findNews(type) {
+  async findNews(type, page, pagesize) {
     const { ctx } = this;
-    const res = await ctx.model.News.findAndCountAll({
+    const res = await ctx.model.News.findAll({
+      offset: (page - 1) * pagesize,
+      limit: pagesize,
+    }, {
       where: {
         type: type
       }
     });
-    if (res.count == 0) {
+    if (res.length == 0) {
       ctx.throw(404, { code: 1, message: "无数据" })
     } else {
       return {
         code: 0,
-        data: res.rows,
-        total: res.count,
+        data: res,
+        total: res.length,
         message: "查询成功"
       }
     }
