@@ -57,5 +57,18 @@ class UserController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.user.findUserInfo(ctx.query.account)
   }
+
+  /**
+   * @summary 修改密码
+   * @description 修改密码
+   * @router put /api/user
+   * @request query string *password
+   * @request query string *student_id
+   * @response 200 baseResponse 修改成功
+   */
+  async updatePassword() {
+    const { ctx, service } = this;
+    ctx.body = await service.user.updatePassword(ctx.query.password, ctx.query.student_id)
+  }
 }
 module.exports = UserController;

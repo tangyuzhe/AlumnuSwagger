@@ -83,6 +83,17 @@ class UserService extends Service {
       }
     }
   }
+
+  async updatePassword(password, student_id) {
+    const { ctx } = this;
+    password = await ctx.genHash(password)
+    const res = await ctx.model.User.update({ password: password }, { where: { student_id: student_id } })
+    return {
+      code: 0,
+      data: res,
+      message: "修改成功"
+    }
+  }
 }
 
 module.exports = UserService;
