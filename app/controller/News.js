@@ -67,7 +67,7 @@ class SchoolNewsController extends Controller {
   /**
    * @summary 查询新闻
    * @description 获取新闻列表
-   * @router get /api/news/{type}
+   * @router get /api/news
    * @request query integer *type
    * @request query integer *page
    * @request query integer *pagesize
