@@ -55,7 +55,6 @@ class SchoolNewsService extends Service {
     const res = await ctx.model.News.findAll({
       offset: (page - 1) * pagesize,
       limit: pagesize,
-    }, {
       where: {
         type: type
       }
