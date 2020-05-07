@@ -78,16 +78,19 @@ class AlumnusService extends Service {
   }
 
 
-  async findAll() {
+  async findAll(page, pagesize) {
     const { ctx } = this;
-    const res = await ctx.model.Alumnus.findAndCountAll()
+    const res = await ctx.model.Alumnus.findAll({
+      offset: (page - 1) * pagesize,
+      limit: pagesize,
+    })
     if (!res) {
       ctx.throw(404, { code: 1, message: "无数据" })
     } else {
       return {
         code: 0,
-        data: res.rows,
-        total: res.count,
+        data: res,
+        total: res.length,
         message: "查询成功"
       }
     }

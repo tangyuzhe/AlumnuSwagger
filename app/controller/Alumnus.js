@@ -61,11 +61,15 @@ class AlumnusController extends Controller {
    * @summary 获得校友信息列表
    * @description 获得校友信息列表
    * @router get /api/alumnus
+   * @request query integer *page
+   * @request query integer *pagesize
    * @response 200 Alumnus 查询成功
    */
   async findAll() {
     const { ctx, service } = this;
-    ctx.body = await service.alumnus.findAll()
+    let page = ctx.query.page
+    let pagesize = parseInt(ctx.query.pagesize)
+    ctx.body = await service.alumnus.findAll(page, pagesize)
   }
 }
 module.exports = AlumnusController;

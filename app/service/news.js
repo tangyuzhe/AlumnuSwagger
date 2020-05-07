@@ -57,7 +57,7 @@ class SchoolNewsService extends Service {
         type: type
       }
     });
-    if (!res) {
+    if (res.count == 0) {
       ctx.throw(404, { code: 1, message: "无数据" })
     } else {
       return {
