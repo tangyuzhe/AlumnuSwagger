@@ -50,6 +50,12 @@ class SchoolNewsService extends Service {
     }
   }
 
+  /**
+   * 
+   * @param {*} type 
+   * @param {*} page 
+   * @param {*} pagesize 
+   */
   async findNews(type, page, pagesize) {
     const { ctx } = this;
     const res = await ctx.model.News.findAll({
@@ -68,6 +74,20 @@ class SchoolNewsService extends Service {
         total: res.length,
         message: "查询成功"
       }
+    }
+  }
+
+  /**
+   * 
+   * @param {*} id 
+   */
+  async findOne(id) {
+    const { ctx } = this;
+    const res = await ctx.model.News.findByPk(id)
+    return {
+      code: 0,
+      data: res,
+      message: "查询成功"
     }
   }
 }

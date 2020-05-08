@@ -75,9 +75,22 @@ class SchoolNewsController extends Controller {
    */
   async findNews() {
     const { ctx, service } = this;
+    let type = ctx.params.type
     let page = ctx.query.page;
     let pagesize = parseInt(ctx.query.pagesize)
-    ctx.body = await service.news.findNews(ctx.params.type, page, pagesize);
+    ctx.body = await service.news.findNews(type, page, pagesize);
+  }
+
+  /**
+   * @summary 查询单条新闻
+   * @description 获取单条新闻
+   * @router get /api/new/{id}
+   * @request path integer *id
+   * @response 200 schoolNews 查询成功
+   */
+  async findOneNew() {
+    const { ctx, service } = this;
+    ctx.body = await service.news.findOne(ctx.params.id);
   }
 }
 module.exports = SchoolNewsController;
