@@ -43,26 +43,18 @@ class UserService extends Service {
   }
 
   /**
-   * 通过微信APPID和APPSECRET获取用户信息
-   * @param {*} APPID 
-   * @param {*} APPSECRET 
-   * @param {*} CODE
+   * 更新openid
+   * @param {*} student_id 
+   * @param {*} openid 
    */
-  async wxAccess(wx) {
+  async updateOpenid(student_id, openid) {
     const { ctx } = this;
-    const querystring = "https://api.weixin.qq.com/sns/jscode2session?grant_type=authorization_code&appid=" + wx.appid + "&secret=" + wx.secret + "&js_code=" + wx.code;
-    // const querystring = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + wx.appid + "&secret=" + wx.secret;
-    const res = await ctx.curl(querystring, {
-      dataType: 'json'
-    });
-    if (!res) {
-      ctx.throw(404, { code: 1, message: "用户查询失败" })
-    } else {
-      return { code: 0, message: "查询成功", data: res.data }
-      // const access_token = res.data.access_token
-      // const openid = ctx.curl("https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=" + access_token)
-      // return openid
-    }
+    const res = await ctx.model.User.update({ openid: openid }, {
+      where: {
+        student_id: student_id
+      }
+    })
+    return res
   }
 
 

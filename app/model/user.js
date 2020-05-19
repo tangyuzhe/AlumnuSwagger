@@ -1,16 +1,38 @@
+/* indent size: 2 */
+
 module.exports = app => {
-  const { STRING, INTEGER } = app.Sequelize;
+  const DataTypes = app.Sequelize;
 
   const User = app.model.define('user', {
-    id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-    account: STRING(30),
-    password: STRING(50),
-    student_id: STRING(11),
-    student_name: STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    account: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    password: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    student_id: {
+      type: DataTypes.STRING(11),
+      allowNull: true
+    },
+    student_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    openid: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    }
   }, {
-    timestamps: false,      //去除createAt updateAt
+    tableName: 'user',
+    timestamps: false,      //去除createAt updateAt
     freezeTableName: true
   });
-
   return User;
 };

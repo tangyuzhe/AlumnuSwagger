@@ -35,15 +35,16 @@ class UserController extends Controller {
   }
 
   /**
-   * @summary 微信第三方登录
+   * @summary 微信授权
    * @description 微信登录获取凭证code
-   * @router post /api/user/wx
-   * @request body wx *body
-   * @response 200 baseResponse 获取成功
+   * @router put /api/user/wxAuth
+   * @request query string *student_id
+   * @request query string *openid
+   * @response 200 baseResponse 修改成功
    */
   async WXAccess() {
     const { ctx, service } = this;
-    ctx.body = await service.user.wxAccess(ctx.request.body)
+    ctx.body = await service.user.updateOpenid(ctx.query.student_id, ctx.query.openid)
   }
 
   /**

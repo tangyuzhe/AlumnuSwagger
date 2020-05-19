@@ -3,45 +3,52 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const News = app.model.define('news', {
+  const Activity = app.model.define('activity', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    type: {
+    theme: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    start_time: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    venue: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    introduction: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    deadline: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    remarks: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    capacity: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    releaser: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    release_time: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    news_title: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    news_body: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    views: {
+    current_quantity: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    file: {
-      type: DataTypes.STRING(255),
+    finished: {
+      type: DataTypes.INTEGER,
       allowNull: true
     }
   }, {
-    tableName: 'news',
+    tableName: 'activity',
     timestamps: false,      //去除createAt updateAt
     freezeTableName: true
   });
-
-  return News;
+  return Activity;
 };

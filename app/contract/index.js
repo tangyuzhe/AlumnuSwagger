@@ -46,6 +46,30 @@ module.exports = {
     news_body: { type: 'string', description: '内容' },
     views: { type: 'number', description: '阅读次数' },
     file: { type: 'string', description: "文件地址" }
+  },
+  Activity: {
+    id: { type: 'number', description: '活动id' },
+    theme: { type: 'string', description: '活动主题' },
+    start_time: { type: 'string', description: '活动开始时间' },
+    venue: { type: 'string', description: '活动场地' },
+    introduction: { type: 'string', description: '活动简介' },
+    deadline: { type: 'string', description: '活动截止时间' },
+    remarks: { type: 'string', description: '活动备注' },
+    capacity: { type: 'number', description: '活动容量' },
+    current_quantity: { type: 'number', description: '当前人数' },
+    finished: { type: 'number', description: '活动状态（0：未结束；1：结束）' }
+  },
+  StuActivity: {
+    id: { type: 'number', description: 'id' },
+    student_id: { type: 'string', description: '学号' },
+    student_name: { type: 'string', description: '姓名' },
+    grade: { type: 'number', description: '年级' },
+    activity_id: { type: 'number', description: '活动id' },
+    activity_theme: { type: 'string', description: '活动主题' },
+    registration_time: { type: 'string', description: '报名时间' },
+    signed_time: { type: 'string', description: '签到时间' },
+    report: { type: 'string', description: '报告内容' },
+    report_grade: { type: 'number', description: '报告分数' }
   }
 
 }

@@ -23,15 +23,17 @@
     "egg-bin": "^4.3.5",
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.14.0",
+    "egg-sequelize-auto": "^0.1.1",
     "eslint": "^4.11.0",
     "eslint-config-egg": "^6.0.0",
-    "webstorm-disable-index": "^1.2.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "webstorm-disable-index": "^1.2.0"
   },
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-server",
     "stop": "egg-scripts stop --title=egg-server-server",
     "dev": "egg-bin dev",
+    "dbinit": "egg-sequelize-auto -o ./app/model -h localhost -p 3306 -d guet -u root -x 191514",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
