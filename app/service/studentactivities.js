@@ -62,6 +62,54 @@ class StudentActivitiesService extends Service {
       }
     }
   }
+
+  /**
+   * 查询学生报名的所有活动
+   * @param {*} student_id 
+   */
+  async findAllStudentActivities(student_id) {
+    const { ctx } = this;
+    const res = await ctx.model.StudentActivities.findAll({
+      where: {
+        student_id: student_id
+      }
+    });
+    if (res.length == 0) {
+      ctx.throw(400, { code: 1, message: "查询失败" })
+    } else {
+      return {
+        code: 0,
+        data: res,
+        message: "查询成功"
+      }
+    }
+  }
+
+  /**
+   * 
+   * @param {*} id 
+   * @param {*} signed_time
+   * @param {*} report
+   * @param {*} report_score
+   */
+  async updateStudentActivity(id, signed_time, report, report_score) {
+    const { ctx } = this;
+    const data = await ctx.model.StudentActivities.findByPk(id);
+    if (!data) {
+      ctx.throw(404, { code: 1, message: "未查询到该活动" })
+    } else {
+      const res = await ctx.model.StudentActivities.update({
+        signed_time: signed_time,
+        report: report,
+        report_score: report_score
+      }, { where: { id: id } })
+      return {
+        code: 0,
+        data: res,
+        message: "修改成功"
+      }
+    }
+  }
 }
 
 

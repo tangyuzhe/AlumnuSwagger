@@ -48,5 +48,37 @@ class StudentActivitiesController extends Controller {
     const activity_id = ctx.query.activity_id;
     ctx.body = await service.studentactivities.findStudentActivity(student_id, activity_id)
   }
+
+  /**
+   * @summary 查询学生预约的所有活动
+   * @description 获取学生预约的所有活动
+   * @router get /api/studentactivity/findAllstudentactivity
+   * @request query string *student_id
+   * @response 200 StuActivity 查询成功
+   */
+  async findAllStudentActivity() {
+    const { ctx, service } = this;
+    const student_id = ctx.query.student_id;
+    ctx.body = await service.studentactivities.findAllStudentActivities(student_id)
+  }
+
+  /**
+   * @summary 修改学生活动
+   * @description 签到功能、提交报告、提交报告分数
+   * @router put /api/studentactivity/updatestudentactivity
+   * @request query integer *id
+   * @request query string signed_time
+   * @request query string report
+   * @request query integer report_score
+   * @response 200 StuActivity 修改成功
+   */
+  async UpdateStudentActivity() {
+    const { ctx, service } = this;
+    const id = ctx.query.id;
+    const signed_time = ctx.query.signed_time;
+    const report = ctx.query.report;
+    const report_score = parseInt(ctx.query.report_score);
+    ctx.body = await service.studentactivities.updateStudentActivity(id, signed_time, report, report_score)
+  }
 }
 module.exports = StudentActivitiesController;
