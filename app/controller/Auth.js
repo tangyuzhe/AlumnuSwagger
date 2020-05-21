@@ -59,17 +59,20 @@ class UserController extends Controller {
     ctx.body = await service.user.findUserInfo(ctx.query.account)
   }
 
+
+
   /**
-   * @summary 修改密码
-   * @description 修改密码
-   * @router put /api/user
-   * @request query string *password
-   * @request query string *student_id
-   * @response 200 baseResponse 修改成功
+   * @summary 微信公众号授权
+   * @description 授权code
+   * @router get /api/user/WXCode
+   * @request query string *code
+   * @response 200 baseResponse 获取成功
    */
-  async updatePassword() {
+  async getWXAuth() {
     const { ctx, service } = this;
-    ctx.body = await service.user.updatePassword(ctx.query.password, ctx.query.student_id)
+    const code = ctx.query.code
+    console.log("code", code)
+    ctx.body = await service.user.getWXAuth(ctx.query.code)
   }
 }
 module.exports = UserController;

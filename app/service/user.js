@@ -3,7 +3,7 @@ const Service = require('egg').Service;
 // const UUID = require('uuid');
 // const fs = require('fs');
 // const path = require('path');
-
+const qs = require("qs")
 
 class UserService extends Service {
   /**
@@ -76,15 +76,16 @@ class UserService extends Service {
     }
   }
 
-  async updatePassword(password, student_id) {
+  async getWXAuth(code) {
     const { ctx } = this;
-    password = await ctx.genHash(password)
-    const res = await ctx.model.User.update({ password: password }, { where: { student_id: student_id } })
-    return {
-      code: 0,
-      data: res,
-      message: "修改成功"
-    }
+    let obj = {
+      appid: "wxa684d4611c2c4d3a",
+      secret: "29c838945e6ee4804af4e22e1a5900bd",
+      code: code,
+      grant_type: "authorization_code"
+    };
+    const res = await ctx.curl("https://api.weixin.qq.com/sns/oauth2/access_token?" + qs.stringify(obj))
+    return JSON.parse(res.data.toString());
   }
 }
 

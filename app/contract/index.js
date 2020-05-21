@@ -15,9 +15,9 @@ module.exports = {
     account: { type: 'string', description: '用户账号' },
     password: { type: 'string', description: '用户密码' }
   },
-  // wx: {
-  //   appid: { type: 'string', description: '微信用户APPID', example: 'wx71ad464a92087801' },
-  //   secret: { type: 'string', description: '微信用户SECRET', example: '8aa8cb5b568c2d7f8847ecfae2028662' },
+  // wxAuth: {
+  //   appid: { type: 'string', description: '微信用户APPID', example: 'wxa684d4611c2c4d3a' },
+  //   secret: { type: 'string', description: '微信用户SECRET', example: '29c838945e6ee4804af4e22e1a5900bd' },
   //   code: { type: 'string', description: '登录凭证Code', example: '' }
   // },
   Alumnus: {
