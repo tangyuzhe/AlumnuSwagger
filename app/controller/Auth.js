@@ -70,8 +70,6 @@ class UserController extends Controller {
    */
   async getWXAuth() {
     const { ctx, service } = this;
-    const code = ctx.query.code
-    console.log("code", code)
     ctx.body = await service.user.getWXAuth(ctx.query.code)
   }
 }
