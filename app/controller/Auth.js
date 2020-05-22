@@ -63,7 +63,7 @@ class UserController extends Controller {
 
   /**
    * @summary 微信公众号授权
-   * @description 授权code
+   * @description 授权获取code后进行API请求
    * @router get /api/user/WXCode
    * @request query string *code
    * @response 200 baseResponse 获取成功
@@ -71,7 +71,7 @@ class UserController extends Controller {
   async getWXAuth() {
     const { ctx, service } = this;
     ctx.body = await service.user.getWXAuth(ctx.query.code)
-    ctx.redirect("http://140.143.161.242:8080/#/pages/wxLogin/index" + qs.stringify(ctx.body))
+    ctx.redirect("http://140.143.161.242:8080/#/pages/wxLogin/index?" + qs.stringify(ctx.body))
   }
 
   /**
