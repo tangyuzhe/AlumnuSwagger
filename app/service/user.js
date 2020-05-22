@@ -85,10 +85,10 @@ class UserService extends Service {
       grant_type: "authorization_code"
     };
     const res = await ctx.curl("https://api.weixin.qq.com/sns/oauth2/access_token?" + qs.stringify(obj))
-    const openid = JSON.parse(res.data.toString()).openid;
-    const access_token = JSON.parse(res.data.toString()).access_token;
-    const data = await ctx.curl("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN")
-    return JSON.parse(data.data.toString())
+    // const openid = JSON.parse(res.data.toString()).openid;
+    // const access_token = JSON.parse(res.data.toString()).access_token;
+    // const data = await ctx.curl("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN")
+    return JSON.parse(res.data.toString())
   }
 }
 
