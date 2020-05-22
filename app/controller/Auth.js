@@ -72,5 +72,6 @@ class UserController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.user.getWXAuth(ctx.query.code)
   }
+
 }
 module.exports = UserController;
