@@ -84,8 +84,8 @@ class UserService extends Service {
       code: code,
       grant_type: "authorization_code"
     }
-    const data = await ctx.curl("https://api.weixin.qq.com/sns/oauth2/access_token?" + qs.stringify(obj))
-    return JSON.parse(data.data.toString())
+    const res = await ctx.curl("https://api.weixin.qq.com/sns/oauth2/access_token?" + qs.stringify(obj))
+    return JSON.parse(res.data.toString())
   }
 
 

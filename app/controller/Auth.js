@@ -1,7 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-
+const qs = require("qs")
 /**
  * @controller Auth
  */
