@@ -71,6 +71,7 @@ class UserController extends Controller {
   async getWXAuth() {
     const { ctx, service } = this;
     ctx.body = await service.user.getWXAuth(ctx.query.code)
+    ctx.redirect("http://localhost:8080/pages/wxLogin/index?code=" + ctx.query.code)
   }
 
 }

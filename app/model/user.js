@@ -28,6 +28,10 @@ module.exports = app => {
     openid: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    role: {
+      type: DataTypes.INTEGER(0),
+      allowNull: true
     }
   }, {
     tableName: 'user',
