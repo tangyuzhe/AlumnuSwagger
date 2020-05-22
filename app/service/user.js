@@ -88,7 +88,11 @@ class UserService extends Service {
     return JSON.parse(res.data.toString())
   }
 
-
+  async getInfo(access_token, openid) {
+    const { ctx } = this;
+    const res = await ctx.curl("https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN")
+    return JSON.parse(res.data.toString())
+  }
 }
 
 module.exports = UserService;

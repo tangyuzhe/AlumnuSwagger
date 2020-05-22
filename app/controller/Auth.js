@@ -74,5 +74,17 @@ class UserController extends Controller {
     ctx.redirect("http://localhost:8080/pages/wxLogin/index?" + qs.stringify(ctx.body))
   }
 
+  /**
+   * @summary 用户信息
+   * @description 用户信息接口
+   * @router get /api/user/WXinfo
+   * @request query string *access_token
+   * @request query string *openid
+   * @response 200 baseResponse 获取成功
+   */
+  async getWXInfo() {
+    const { ctx, service } = this;
+    ctx.body = await service.user.getInfo(ctx.query.access_token, ctx.query.openid)
+  }
 }
 module.exports = UserController;
