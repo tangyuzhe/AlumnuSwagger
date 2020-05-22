@@ -70,8 +70,7 @@ class UserController extends Controller {
    */
   async getWXAuth() {
     const { ctx, service } = this;
-    const data = await service.user.getWXAuth(ctx.query.code)
-    ctx.redirect("http://140.143.161.242:8080/pages/home/index?data=" + data)
+    ctx.body = await service.user.getWXAuth(ctx.query.code)
   }
 
 }
