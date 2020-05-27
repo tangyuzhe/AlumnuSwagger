@@ -57,7 +57,8 @@ module.exports = {
     remarks: { type: 'string', description: '活动备注' },
     capacity: { type: 'number', description: '活动容量' },
     current_quantity: { type: 'number', description: '当前人数' },
-    finished: { type: 'number', description: '活动状态（0：未结束；1：结束）' }
+    finished: { type: 'number', description: '活动状态（0：未结束；1：结束）' },
+    credit: { type: 'number', description: '学分' }
   },
   StuActivity: {
     id: { type: 'number', description: 'id' },
