@@ -44,6 +44,10 @@ module.exports = app => {
     finished: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    credit: {
+      type: DataTypes.DOUBLE,
+      allowNull: true
     }
   }, {
     tableName: 'activity',
