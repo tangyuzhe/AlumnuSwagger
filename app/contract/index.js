@@ -71,6 +71,10 @@ module.exports = {
     signed_time: { type: 'string', description: '签到时间' },
     report: { type: 'string', description: '报告内容' },
     report_grade: { type: 'number', description: '报告分数' }
+  },
+  Comment: {
+    id: { type: 'number', description: 'id' },
+    comment: { type: 'string', description: '反馈意见' }
   }
 
 }
