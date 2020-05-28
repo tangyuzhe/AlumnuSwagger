@@ -14,7 +14,7 @@ module.exports = app => {
       allowNull: true
     },
     start_time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     venue: {
@@ -26,7 +26,7 @@ module.exports = app => {
       allowNull: true
     },
     deadline: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     remarks: {

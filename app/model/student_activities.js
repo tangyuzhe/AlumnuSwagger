@@ -30,11 +30,11 @@ module.exports = app => {
       allowNull: true
     },
     registration_time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     signed_time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     report: {
