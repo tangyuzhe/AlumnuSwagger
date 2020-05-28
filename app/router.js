@@ -1,7 +1,7 @@
 'use strict';
 module.exports = app => {
   const { router, controller } = app;
-  router.redirect('/', '/swagger-ui.html')
+  // router.redirect('/', '/swagger-ui.html')
   // const baseUrl = app.config.baseUrl;
   // const home = app.controller.home;
   // const group = app.controller.group;
