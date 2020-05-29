@@ -78,9 +78,17 @@ class UserService extends Service {
 
   async getWXAuth(code) {
     const { ctx } = this;
+    //测试号
+    // let obj = {
+    //   appid: "wxa684d4611c2c4d3a",
+    //   secret: "29c838945e6ee4804af4e22e1a5900bd",
+    //   code: code,
+    //   grant_type: "authorization_code"
+    // }
+    //正式
     let obj = {
-      appid: "wxa684d4611c2c4d3a",
-      secret: "29c838945e6ee4804af4e22e1a5900bd",
+      appid: "wx3508ae3ee71e9f68",
+      secret: "0bbec777652406507af7c0516d82dbb1",
       code: code,
       grant_type: "authorization_code"
     }
