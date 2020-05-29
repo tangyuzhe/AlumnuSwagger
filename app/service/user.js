@@ -79,8 +79,8 @@ class UserService extends Service {
   async getWXAuth(code) {
     const { ctx } = this;
     let obj = {
-      appid: "wxa684d4611c2c4d3a",
-      secret: "29c838945e6ee4804af4e22e1a5900bd",
+      appid: "wx57c4b1d94828ff56",
+      secret: "eb56e245f878b3b8e4193aaec04b1040",
       code: code,
       grant_type: "authorization_code"
     }
