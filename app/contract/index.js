@@ -75,6 +75,13 @@ module.exports = {
   Comment: {
     id: { type: 'number', description: 'id' },
     comment: { type: 'string', description: '反馈意见' }
+  },
+  Role: {
+    id: { type: 'number', description: 'id' },
+    name: { type: 'string', description: '姓名' },
+    userid: { type: 'string', description: '用户账号' },
+    openid: { type: 'string', description: '微信openid' },
+    role: { type: 'role', description: '角色' }
   }
 
 }
