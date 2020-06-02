@@ -117,6 +117,21 @@ class ActivityService extends Service {
       }
     }
   }
+
+  /**
+   * 
+   * @param {*} id 
+   * @param {*} payload 
+   */
+  async updateOne(id, payload) {
+    const { ctx } = this;
+    const res = await ctx.model.Activity.update(payload, {
+      where: {
+        id: id
+      }
+    })
+    return res
+  }
 }
 
 

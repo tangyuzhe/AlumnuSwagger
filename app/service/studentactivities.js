@@ -110,6 +110,25 @@ class StudentActivitiesService extends Service {
       }
     }
   }
+
+  /**
+   * 查询某活动所有参与的学生
+   * @param {*} activity_id 
+   * @param {*} page 
+   * @param {*} pagesize 
+   */
+  async findAllStudents(activity_id, page, pagesize) {
+    const { ctx } = this;
+    const res = await ctx.model.StudentActivities.findAll({
+      offset: (page - 1) * pagesize,
+      limit: pagesize
+    }, {
+      where: {
+        activity_id: activity_id
+      }
+    })
+    return res
+  }
 }
 
 

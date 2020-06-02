@@ -80,5 +80,22 @@ class StudentActivitiesController extends Controller {
     const report_score = parseInt(ctx.query.report_score);
     ctx.body = await service.studentactivities.updateStudentActivity(id, signed_time, report, report_score)
   }
+
+  /**
+     * @summary 获取某活动所有学生
+     * @description 获取某活动所有学生
+     * @router get /api/stuactivity/allstudent
+     * @request query integer *activity_id
+     * @request query integer *page
+     * @request query integer *pagesize
+     * @response 200 StuActivity 获取成功
+     */
+  async findAllStudents() {
+    const { ctx, service } = this;
+    const activity_id = ctx.query.activity_id;
+    const page = ctx.query.page;
+    const pagesize = parseInt(ctx.query.pagesize);
+    ctx.body = await service.studentactivities.findAllStudents(activity_id, page, pagesize)
+  }
 }
 module.exports = StudentActivitiesController;

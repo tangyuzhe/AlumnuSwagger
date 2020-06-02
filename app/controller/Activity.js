@@ -79,5 +79,20 @@ class ActivityController extends Controller {
     const id = ctx.params.id;
     ctx.body = await service.activity.delete(id)
   }
+
+  /**
+   * @summary 修改活动
+   * @description 修改活动
+   * @router put /api/activity/update/{id}
+   * @request path integer *id
+   * @request body Activity *body
+   * @response 200 Activity 修改成功
+   */
+  async updateOne() {
+    const { ctx, service } = this;
+    const id = ctx.params.id;
+    const data = ctx.request.body;
+    ctx.body = await service.activity.updateOne(id, data)
+  }
 }
 module.exports = ActivityController;
