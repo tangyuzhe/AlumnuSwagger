@@ -121,8 +121,7 @@ class StudentActivitiesService extends Service {
     const { ctx } = this;
     const res = await ctx.model.StudentActivities.findAll({
       offset: (page - 1) * pagesize,
-      limit: pagesize
-    }, {
+      limit: pagesize,
       where: {
         activity_id: activity_id
       }
