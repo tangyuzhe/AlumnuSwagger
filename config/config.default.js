@@ -25,7 +25,7 @@ module.exports = appInfo => {
       },
     },
     schemes: ['http', 'https'],
-    enable: true,
+    enableSecurity: true,
     routerMap: true,
   };
 

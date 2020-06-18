@@ -64,6 +64,18 @@ module.exports = app => {
     phone: {
       type: DataTypes.STRING(11),
       allowNull: true
+    },
+    grade: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    student_status: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    phone: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     tableName: 'alumnu',
