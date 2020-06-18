@@ -85,8 +85,15 @@ module.exports = {
   },
   StudentJobTag: {
     id: { type: 'number', description: 'id' },
-    student_id: { type: 'string', description: '学号', example: '1700301329' },
-    job_tag: { type: 'string', description: '职务标签', example: '生活委员' },
+    student_id: { type: 'string', description: '学号' },
+    job_tag: { type: 'string', description: '职务标签' },
+  },
+  Message: {
+    id: { type: 'number', description: 'id' },
+    news_id: { type: 'number', description: '新闻id' },
+    student_id: { type: 'string', description: '学号' },
+    read_status: { type: 'number', description: '阅读状态' },
+    read_time: { type: 'string', description: '阅读时间' }
   }
 
 }
