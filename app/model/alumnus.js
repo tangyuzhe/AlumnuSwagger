@@ -73,7 +73,7 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    phone: {
+    employment_status: {
       type: DataTypes.INTEGER,
       allowNull: true
     }
