@@ -3,7 +3,7 @@ const Service = require('egg').Service;
 
 class CommentService extends Service {
   /**
-   * 创建用户
+   * 创建反馈
    * @param {*} comment 
    */
   async createComment(comment) {

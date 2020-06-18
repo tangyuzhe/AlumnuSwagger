@@ -82,6 +82,11 @@ module.exports = {
     userid: { type: 'string', description: '用户账号' },
     openid: { type: 'string', description: '微信openid' },
     role: { type: 'role', description: '角色' }
+  },
+  StudentJobTag: {
+    id: { type: 'number', description: 'id' },
+    student_id: { type: 'string', description: '学号', example: '1700301329' },
+    job_tag: { type: 'string', description: '职务标签', example: '生活委员' },
   }
 
 }
