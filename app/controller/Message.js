@@ -41,13 +41,15 @@ class MessageController extends Controller {
    * @router put /api/message/{id}
    * @request path integer *id
    * @request query integer *readStatus
+   * @request query string *read_time
    * @response 200 Message 修改成功
    */
   async UpdateMessage() {
     const { ctx, service } = this;
     const id = ctx.params.id
     const readStatus = parseInt(ctx.query.readStatus)
-    ctx.body = await service.message.updateReadStatus(id, readStatus);
+    const readTime = ctx.query.readTime
+    ctx.body = await service.message.updateReadStatus(id, readStatus, readTime);
   }
 
   /**

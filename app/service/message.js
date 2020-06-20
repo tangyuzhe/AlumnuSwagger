@@ -45,14 +45,15 @@ class MessageService extends Service {
    * @param {*} id 
    * @param {*} read_status 
    */
-  async updateReadStatus(id, read_status) {
+  async updateReadStatus(id, read_status, read_time) {
     const { ctx } = this;
     const data = await ctx.model.Message.findByPk(id)
     if (!data) {
       ctx.throw(404, { code: 1, message: '查无数据' })
     } else {
       const res = await ctx.model.Message.update({
-        read_status: read_status
+        read_status: read_status,
+        read_time: read_time
       }, {
         where: {
           id: id
