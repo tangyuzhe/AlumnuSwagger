@@ -91,6 +91,29 @@ class MessageService extends Service {
     }
   }
 
+  /**
+   * 根据新闻id查询所有数据
+   * @param {*} news_id 
+   * @param {*} page 
+   * @param {*} pagesize 
+   */
+  async findMessagesByNewsID(news_id, page, pagesize) {
+    const { ctx } = this;
+    const res = await ctx.model.Message.findAll({
+      offset: (page - 1) * pagesize,
+      limit: pagesize,
+      where: {
+        news_id: news_id
+      }
+    })
+    return {
+      code: 0,
+      message: '查询成功',
+      data: res,
+      total: res.length
+    }
+  }
+
 }
 
 module.exports = MessageService;

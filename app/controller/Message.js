@@ -41,7 +41,7 @@ class MessageController extends Controller {
    * @router put /api/message/{id}
    * @request path integer *id
    * @request query integer *readStatus
-   * @request query string *read_time
+   * @request query string *readTime
    * @response 200 Message 修改成功
    */
   async UpdateMessage() {
@@ -63,6 +63,24 @@ class MessageController extends Controller {
     const { ctx, service } = this;
     const id = ctx.params.id
     ctx.body = await service.message.deleteMessage(id);
+  }
+
+
+  /**
+   * @summary 根据新闻id查询消息列表
+   * @description 根据新闻id查询消息列表
+   * @router get /api/messages/newsId
+   * @request query string *news_id
+   * @request query integer page
+   * @request query integer pagesize
+   * @response 200 Message 查询成功
+   */
+  async findMessagesById() {
+    const { ctx, service } = this;
+    const news_id = ctx.query.news_id
+    const page = ctx.query.page
+    const pagesize = parseInt(ctx.query.pagesize)
+    ctx.body = await service.message.findMessagesByNewsID(news_id, page, pagesize);
   }
 }
 module.exports = MessageController;
