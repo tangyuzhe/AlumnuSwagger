@@ -12,6 +12,7 @@ class AlumnusController extends Controller {
    * @router post /api/alumnus/createAlumnu
    * @request body Alumnus *body 
    * @response 200 Alumnus 创建成功
+   * @apikey
    */
   async createAlumnu() {
     const { ctx, service } = this;
@@ -25,6 +26,7 @@ class AlumnusController extends Controller {
    * @router get /api/alumnus/findAlumnu
    * @request query string *name
    * @response 200 baseResponse 查询成功
+   * @apikey
    */
   async findAlumnu() {
     const { ctx, service } = this;
@@ -37,6 +39,7 @@ class AlumnusController extends Controller {
    * @router delete /api/alumnus/{id}
    * @request path integer *id
    * @response 200 baseResponse 删除成功
+   * @apikey
    */
   async deleteAlumnu() {
     const { ctx, service } = this;
@@ -50,6 +53,7 @@ class AlumnusController extends Controller {
    * @request query integer *id
    * @request body Alumnus *body
    * @response 200 baseResponse 修改成功
+   * @apikey
    */
   async updateAlumnu() {
     const { ctx, service } = this;
@@ -64,6 +68,7 @@ class AlumnusController extends Controller {
    * @request query integer *page
    * @request query integer *pagesize
    * @response 200 Alumnus 查询成功
+   * @apikey
    */
   async findAll() {
     const { ctx, service } = this;

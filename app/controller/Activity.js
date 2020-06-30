@@ -12,6 +12,7 @@ class ActivityController extends Controller {
    * @router post /api/activity/createActivity
    * @request body Activity *body 
    * @response 200 Activity 创建成功
+   * @apikey
    */
   async create() {
     const { ctx, service } = this;
@@ -27,6 +28,7 @@ class ActivityController extends Controller {
    * @request query integer current_quantity
    * @request query integer finished
    * @response 200 Activity 创建成功
+   * @apikey
    */
   async update() {
     const { ctx, service } = this;
@@ -43,6 +45,7 @@ class ActivityController extends Controller {
    * @request query integer *page
    * @request query integer *pagesize
    * @response 200 Activity 查询成功
+   * @apikey
    */
   async findAll() {
     const { ctx, service } = this;
@@ -58,6 +61,7 @@ class ActivityController extends Controller {
    * @request query integer id
    * @request query string theme
    * @response 200 Activity 查询成功
+   * @apikey
    */
   async findOne() {
     const { ctx, service } = this;
@@ -73,6 +77,7 @@ class ActivityController extends Controller {
    * @router delete /api/activity/{id}
    * @request path integer *id
    * @response 200 Activity 删除成功
+   * @apikey
    */
   async delete() {
     const { ctx, service } = this;
@@ -87,6 +92,7 @@ class ActivityController extends Controller {
    * @request path integer *id
    * @request body Activity *body
    * @response 200 Activity 修改成功
+   * @apikey
    */
   async updateOne() {
     const { ctx, service } = this;

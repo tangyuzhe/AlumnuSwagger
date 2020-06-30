@@ -12,6 +12,7 @@ class StudentActivitiesController extends Controller {
    * @router post /api/studentactivity/create
    * @request body StuActivity *body 
    * @response 200 StuActivity 创建成功
+   * @apikey
    */
   async create() {
     const { ctx, service } = this;
@@ -26,6 +27,7 @@ class StudentActivitiesController extends Controller {
    * @request query string *student_id
    * @request query integer *activity_id
    * @response 200 StuActivity 查询成功
+   * @apikey
    */
   async delStudentActivity() {
     const { ctx, service } = this;
@@ -41,6 +43,7 @@ class StudentActivitiesController extends Controller {
    * @request query string *student_id
    * @request query integer *activity_id
    * @response 200 StuActivity 查询成功
+   * @apikey
    */
   async findStudentActivity() {
     const { ctx, service } = this;
@@ -55,6 +58,7 @@ class StudentActivitiesController extends Controller {
    * @router get /api/studentactivity/findAllstudentactivity
    * @request query string *student_id
    * @response 200 StuActivity 查询成功
+   * @apikey
    */
   async findAllStudentActivity() {
     const { ctx, service } = this;
@@ -71,6 +75,7 @@ class StudentActivitiesController extends Controller {
    * @request query string report
    * @request query integer report_score
    * @response 200 StuActivity 修改成功
+   * @apikey
    */
   async UpdateStudentActivity() {
     const { ctx, service } = this;
@@ -89,6 +94,7 @@ class StudentActivitiesController extends Controller {
      * @request query integer *page
      * @request query integer *pagesize
      * @response 200 StuActivity 获取成功
+     * @apikey
      */
   async findAllStudents() {
     const { ctx, service } = this;

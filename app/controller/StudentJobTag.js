@@ -12,6 +12,7 @@ class StudentJobTagController extends Controller {
    * @router post /api/jobtag/createJobTag
    * @request body StudentJobTag *body 
    * @response 200 StudentJobTag 创建成功
+   * @apikey
    */
   async createJobTag() {
     const { ctx, service } = this;
@@ -25,6 +26,7 @@ class StudentJobTagController extends Controller {
    * @router get /api/jobtags
    * @request query string *student_id
    * @response 200 StudentJobTag 创建成功
+   * @apikey
    */
   async findTags() {
     const { ctx, service } = this;
@@ -37,6 +39,7 @@ class StudentJobTagController extends Controller {
    * @router delete /api/jobtags/{id}
    * @request path integer *id
    * @response 200 StudentJobTag 创建成功
+   * @apikey
    */
   async deleteTag() {
     const { ctx, service } = this;

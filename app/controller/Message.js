@@ -12,6 +12,7 @@ class MessageController extends Controller {
    * @router post /api/message/createMessage
    * @request body Message *body 
    * @response 200 Message 创建成功
+   * @apikey
    */
   async createMessage() {
     const { ctx, service } = this;
@@ -26,6 +27,7 @@ class MessageController extends Controller {
    * @request query integer *page
    * @request query integer *pagesize
    * @response 200 Message 查询成功
+   * @apikey
    */
   async findMessages() {
     const { ctx, service } = this;
@@ -43,6 +45,7 @@ class MessageController extends Controller {
    * @request query integer *readStatus
    * @request query string *readTime
    * @response 200 Message 修改成功
+   * @apikey
    */
   async UpdateMessage() {
     const { ctx, service } = this;
@@ -58,6 +61,7 @@ class MessageController extends Controller {
    * @router delete /api/message/{id}
    * @request path integer *id
    * @response 200 Message 删除成功
+   * @apikey
    */
   async deleteMessage() {
     const { ctx, service } = this;
@@ -74,6 +78,7 @@ class MessageController extends Controller {
    * @request query integer page
    * @request query integer pagesize
    * @response 200 Message 查询成功
+   * @apikey
    */
   async findMessagesById() {
     const { ctx, service } = this;

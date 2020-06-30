@@ -20,7 +20,7 @@ module.exports = appInfo => {
     securityDefinitions: {
       apikey: {
         type: 'apiKey',
-        name: 'clientkey',
+        name: 'Authorization',
         in: 'header',
       },
     },

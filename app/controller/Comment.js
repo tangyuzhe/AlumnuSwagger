@@ -12,6 +12,7 @@ class CommentController extends Controller {
    * @router post /api/comment/createComment
    * @request body Comment *body 
    * @response 200 Comment 创建成功
+   * @apikey
    */
   async createComment() {
     const { ctx, service } = this;

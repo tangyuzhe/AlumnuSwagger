@@ -13,6 +13,7 @@ class SchoolNewsController extends Controller {
    * @router post /api/upload
    * @request formData file *file
    * @response 200 baseResponse 更新成功
+   * @apikey
    */
   async upload() {
     const { ctx } = this;
@@ -47,6 +48,7 @@ class SchoolNewsController extends Controller {
    * @router post /api/news/createNews
    * @request body schoolNews *body 
    * @response 200 schoolNews 创建成功
+   * @apikey
    */
   async create() {
     const { ctx, service } = this;
@@ -58,6 +60,7 @@ class SchoolNewsController extends Controller {
    * @description 获取新闻列表
    * @router get /api/news
    * @response 200 schoolNews 查询成功
+   * @apikey
    */
   async getList() {
     const { ctx, service } = this;
@@ -72,6 +75,7 @@ class SchoolNewsController extends Controller {
    * @request query integer *page
    * @request query integer *pagesize
    * @response 200 schoolNews 查询成功
+   * @apikey
    */
   async findNews() {
     const { ctx, service } = this;
@@ -87,6 +91,7 @@ class SchoolNewsController extends Controller {
    * @router get /api/new/{id}
    * @request path integer *id
    * @response 200 schoolNews 查询成功
+   * @apikey
    */
   async findOneNew() {
     const { ctx, service } = this;

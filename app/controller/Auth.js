@@ -23,16 +23,18 @@ class UserController extends Controller {
   }
 
   /**
-   * @summary Auth测试获取token
-   * @description 用户测试获取token
-   * @router post /api/user/Auth
-   * @request body Auth *body
-   * @response 200 baseResponse 获取成功
-   */
+ * @summary Auth测试获取token
+ * @description 用户测试获取token
+ * @router post /api/user/Auth
+ * @request query string *userid
+ * @request query string *name 
+ * @response 200 baseResponse 获取成功
+ */
   async getToken() {
     const { ctx, service } = this;
-    ctx.body = await service.user.getToken(ctx.request.body)
+    ctx.body = await service.user.getToken(ctx.query.userid, ctx.query.name)
   }
+
 
   /**
    * @summary 微信授权

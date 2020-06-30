@@ -23,23 +23,26 @@ class UserService extends Service {
 
   /**
    * 
-   * @param {*} user 
+   * @param {*} userid 
+   * @param {*} name 
    */
-  async getToken(user) {
+  async getToken(userid, name) {
     const { ctx } = this;
-    const res = await ctx.model.User.findOne({
+    const res = await ctx.model.Role.findOne({
       where: {
-        account: user.account
+        userid: userid,
+        name: name
       }
     })
     if (!res) {
       ctx.throw(404, { code: 1, message: '未查询到用户' })
+    } else {
+      return {
+        code: 0,
+        message: '请求成功',
+        token: await ctx.service.token.apply(userid, name)
+      }
     }
-    const verifyPsw = await this.ctx.compare(user.password, res.password);
-    if (!verifyPsw) {
-      this.ctx.throw(403, { code: 1, message: '用户密码错误' });
-    }
-    return { code: 0, message: '请求成功', token: await ctx.service.token.apply(user.account, user.password) }
   }
 
   /**
