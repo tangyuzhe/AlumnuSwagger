@@ -38,10 +38,11 @@ module.exports = appInfo => {
   config.sequelize = {
     dialect: 'mysql',
     database: 'guet',
-    host: 'localhost',
+    host: '121.37.180.33',
     port: 3306,
     username: 'root',
-    password: '191514',
+    password: 'Fznfzn509',
+    timezone:  '+08:00',
   };
 
   //bcrypt 密码加密
