@@ -42,7 +42,7 @@ module.exports = appInfo => {
     port: 3306,
     username: 'root',
     password: 'Fznfzn509',
-    timezone:  '+08:00',
+    timezone: '+08:00',
   };
 
   //bcrypt 密码加密
