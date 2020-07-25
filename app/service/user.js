@@ -81,14 +81,6 @@ class UserService extends Service {
 
   async getWXAuth(code) {
     const { ctx } = this;
-    //测试号
-    // let obj = {
-    //   appid: "wxa684d4611c2c4d3a",
-    //   secret: "29c838945e6ee4804af4e22e1a5900bd",
-    //   code: code,
-    //   grant_type: "authorization_code"
-    // }
-    //正式
     let obj = {
       appid: "wx3508ae3ee71e9f68",
       secret: "0bbec777652406507af7c0516d82dbb1",
@@ -96,6 +88,18 @@ class UserService extends Service {
       grant_type: "authorization_code"
     }
     const res = await ctx.curl("https://api.weixin.qq.com/sns/oauth2/access_token?" + qs.stringify(obj))
+    return JSON.parse(res.data.toString())
+  }
+
+  async getWXAuthPeaceLC(code) {
+    const { ctx } = this;
+    let obj = {
+      appid: "wx188be89f330876f7",
+      // secret: "0bbec777652406507af7c0516d82dbb1",
+      code: code,
+      grant_type: "authorization_code"
+    }
+    const res = await ctx.curl('https://api.weixin.qq.com/sns/oauth2/access_token?' + qs.stringify(obj))
     return JSON.parse(res.data.toString())
   }
 

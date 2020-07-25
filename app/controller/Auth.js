@@ -61,8 +61,6 @@ class UserController extends Controller {
     ctx.body = await service.user.findUserInfo(ctx.query.account)
   }
 
-
-
   /**
    * @summary 微信公众号授权
    * @description 授权获取code后进行API请求
@@ -73,8 +71,20 @@ class UserController extends Controller {
   async getWXAuth() {
     const { ctx, service } = this;
     ctx.body = await service.user.getWXAuth(ctx.query.code)
-    ctx.redirect("http://thesecondclass.linaxhua.cn:8080/#/pages/wxLogin/index?" + qs.stringify(ctx.body))
-    // ctx.redirect("http://localhost:8080/#/pages/index/index?" + qs.stringify(ctx.body))
+    ctx.redirect("http://thesecondclass.linaxhua.cn:8080/#/pages/wxLogin/index?" + qs.stringify(ctx.body));
+  }
+
+  /**
+ * @summary 平安灵川微信公众号授权
+ * @description 授权获取code后进行API请求
+ * @router get /api/user/PeaceLCWXCode
+ * @request query string *code
+ * @response 200 baseResponse 获取成功
+ */
+  async getWXAuthPeaceLC() {
+    const { ctx, service } = this;
+    ctx.body = await service.user.getWXAuthPeaceLC(ctx.query.code);
+    ctx.redirect("http://thesecondclass.linaxhua.cn:8081/#/pages/index/index?" + qs.stringify(ctx.body));
   }
 
   /**
