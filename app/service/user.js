@@ -95,7 +95,7 @@ class UserService extends Service {
     const { ctx } = this;
     let obj = {
       appid: "wx188be89f330876f7",
-      // secret: "0bbec777652406507af7c0516d82dbb1",
+      secret: "2d68abd47df7c1ade77aa9ae10766398",
       code: code,
       grant_type: "authorization_code"
     }
