@@ -101,15 +101,16 @@ class UserController extends Controller {
   }
 
   /**
-   * @summary 获取全部openid
-   * @description 获取全部openid
-   * @router get /api/user/openidlist
-   * @request query string *access_token
+   * @summary 平安灵川获取token
+   * @description 平安灵川获取token
+   * @router get /api/peacelc/token
+   * @request query string *appid
+   * @request query string *appsecret
    * @response 200 baseResponse 获取成功
    */
-  async GetOpenidList() {
+  async GetPeaceLCToken() {
     const { ctx, service } = this;
-    ctx.body = await service.user.GetOpenidList(ctx.query.access_token)
+    ctx.body = await service.user.GetPeaceLCToken(ctx.query.appid, ctx.query.appsecret)
   }
 }
 module.exports = UserController;

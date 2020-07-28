@@ -109,11 +109,17 @@ class UserService extends Service {
     return JSON.parse(res.data.toString())
   }
 
-  async GetOpenidList(access_token) {
+  async GetPeaceLCToken(appid, appsecret) {
     const { ctx } = this;
-    const res = await ctx.curl('https://api.weixin.qq.com/cgi-bin/user/get?access_token=' + access_token + '&next_openid=NEXT_OPENID');
+    const data = {
+      grant_type: 'client_credential',
+      appid: appid,
+      secret: appsecret
+    }
+    const res = await ctx.curl("https://api.weixin.qq.com/sns/userinfo?" + qs.stringify(data))
     return JSON.parse(res.data.toString())
   }
+
 }
 
 module.exports = UserService;
