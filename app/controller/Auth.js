@@ -110,5 +110,18 @@ class UserController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.user.GetPeaceLCToken()
   }
+
+  /**
+   * @summary 平安灵川获取用户信息
+   * @description 平安灵川获取用户信息
+   * @router get /api/peacelc/userinfo
+   * @request query string *access_token
+   * @request query string *openid
+   * @response 200 baseResponse 获取成功
+   */
+  async GetPeaceLCUserInfo() {
+    const { ctx, service } = this;
+    ctx.body = await service.user.GetPeaceLCUserInfo(ctx.query.access_token, ctx.query.openid)
+  }
 }
 module.exports = UserController;
