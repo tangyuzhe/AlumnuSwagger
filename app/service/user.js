@@ -116,7 +116,7 @@ class UserService extends Service {
       appid: 'wx188be89f330876f7',
       secret: '2d68abd47df7c1ade77aa9ae10766398'
     }
-    const res = await ctx.curl("https://api.weixin.qq.com/sns/userinfo?" + qs.stringify(data))
+    const res = await ctx.curl("https://api.weixin.qq.com/cgi-bin/token?" + qs.stringify(data))
     return JSON.parse(res.data.toString())
   }
 
