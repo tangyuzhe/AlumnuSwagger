@@ -109,12 +109,12 @@ class UserService extends Service {
     return JSON.parse(res.data.toString())
   }
 
-  async GetPeaceLCToken(appid, appsecret) {
+  async GetPeaceLCToken() {
     const { ctx } = this;
     const data = {
       grant_type: 'client_credential',
-      appid: appid,
-      secret: appsecret
+      appid: 'wx188be89f330876f7',
+      secret: '2d68abd47df7c1ade77aa9ae10766398'
     }
     const res = await ctx.curl("https://api.weixin.qq.com/sns/userinfo?" + qs.stringify(data))
     return JSON.parse(res.data.toString())

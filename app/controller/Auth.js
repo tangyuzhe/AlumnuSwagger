@@ -104,13 +104,11 @@ class UserController extends Controller {
    * @summary 平安灵川获取token
    * @description 平安灵川获取token
    * @router get /api/peacelc/token
-   * @request query string *appid
-   * @request query string *appsecret
    * @response 200 baseResponse 获取成功
    */
   async GetPeaceLCToken() {
     const { ctx, service } = this;
-    ctx.body = await service.user.GetPeaceLCToken(ctx.query.appid, ctx.query.appsecret)
+    ctx.body = await service.user.GetPeaceLCToken()
   }
 }
 module.exports = UserController;
