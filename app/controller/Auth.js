@@ -99,5 +99,17 @@ class UserController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.user.getInfo(ctx.query.access_token, ctx.query.openid)
   }
+
+  /**
+   * @summary 获取全部openid
+   * @description 获取全部openid
+   * @router get /api/user/openidlist
+   * @request query string *access_token
+   * @response 200 baseResponse 获取成功
+   */
+  async GetOpenidList() {
+    const { ctx, service } = this;
+    ctx.body = await service.user.GetOpenidList(ctx.query.access_token)
+  }
 }
 module.exports = UserController;
