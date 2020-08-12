@@ -94,6 +94,13 @@ module.exports = {
     student_id: { type: 'string', description: '学号' },
     read_status: { type: 'number', description: '阅读状态' },
     read_time: { type: 'string', description: '阅读时间' }
+  },
+  job: {
+    jobId: { type: 'number', description: '职位ID' },
+    jobName: { type: 'string', description: '职位名称' },
+    academyId: { type: 'number', description: '所属学院ID'},
+    details: { type: 'string', description: '详细描述' },
+    createdAt: { type: 'string', description: '创建时间' },
+    updatedAt: { type: 'string', description: '更新时间' }
   }
-
 }
