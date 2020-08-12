@@ -11,16 +11,16 @@ class JobService extends Service {
    */
   async createOne(jobName, academyId, details) {
     const { ctx } = this;
-    const res = await ctx.model.job.findOne({   //判断是否存在重复职业
+    const res = await ctx.model.Job.findOne({   //判断是否存在重复职业
       where: {
         jobName: jobName
       }
     })
     if (!res) {
       if (details === undefined) {
-        res = await ctx.model.job.create({
-            jobName: jobName,
-            academyId: academyId
+        res = await ctx.model.Job.create({
+          jobName: jobName,
+          academyId: academyId
         })
         if (res) {
           return {
@@ -32,7 +32,7 @@ class JobService extends Service {
           ctx.throw(404, { code: 1, message: '插入失败！' });
         }
       } else {
-        const res = await ctx.model.job.create({
+        const res = await ctx.model.Job.create({
           jobName: jobName,
           academyId: academyId,
           details: details
@@ -57,7 +57,7 @@ class JobService extends Service {
    * @param {*} jobId 
    */
 
-  async deleteById(jobId){
+  async deleteById(jobId) {
     const { ctx } = this;
     const res = await ctx.model.job.findByPk(jobId);
     if (!res) {
@@ -88,7 +88,7 @@ class JobService extends Service {
    * 根据工作名称删除记录
    * @param {*} jobName 
    */
-  async deleteByName(jobName){
+  async deleteByName(jobName) {
     const { ctx } = this;
     const res = await ctx.model.job.findOne({
       where: {
