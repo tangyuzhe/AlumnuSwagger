@@ -95,14 +95,6 @@ module.exports = {
     read_status: { type: 'number', description: '阅读状态' },
     read_time: { type: 'string', description: '阅读时间' }
   },
-  job: {
-    jobId: { type: 'number', description: '职位ID' },
-    jobName: { type: 'string', description: '职位名称' },
-    academyId: { type: 'number', description: '所属学院ID'},
-    details: { type: 'string', description: '详细描述' },
-    createdAt: { type: 'string', description: '创建时间' },
-    updatedAt: { type: 'string', description: '更新时间' }
-  },
   intention:{
     id: {type: 'number',description: 'id'},
     sno: {type: 'string',description: '学号'},
@@ -125,5 +117,24 @@ module.exports = {
     company: {type:   'string',description: '公司名称'},
     salary: {type: "DOUBLE",description: '薪资'},
     failedCourses: {type:   'string',description: '挂科科目'}
-  }
+  },
+  Job: {
+    id: { type: 'number', description: '职位ID' },
+    name: { type: 'string', description: '职位名称' },
+    academy: { type: 'number', description: '所属学院ID'},
+    details: { type: 'string', description: '详细描述' }
+  },
+  Academy: {
+    id: { type: 'number', description: '学院ID' },
+    number: { type: 'string', description: '学院代码' },
+    name: { type: 'string', description: '学院名称' },
+    details: { type: 'string', description: '详细描述' }
+  },
+  Major: {
+    id: { type: 'number', description: '专业ID' },
+    mark: { type: 'number', description: '本硕标记' },
+    name: { type: 'string', description: '专业名称' },
+    academy: { type: 'number', description: '所属学院ID' },
+    details: { type: 'string', description: '详细描述' }
+  },
 }

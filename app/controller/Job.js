@@ -3,27 +3,35 @@
 const Controller = require('egg').Controller;
 
 /**
- * @Controller Job
+ * @controller Job
  */
 class JobController extends Controller {
-  /**  
-    * @summary 插入记录
-    * @description 根据jobName, academyId, details插入一条记录
-    * @router post /v1/controllers/student/create
-    * @request query string *jobName 职位名称
-    * @request query integer *academyId 所属学院Id
-    * @request query string *details 详细描述
-    * @response 200 job 返回对象
-    * @apikey
-    */
+ /**
+   * @summary 创建工作信息
+   * @description 新建一条工作信息
+   * @router post /api/job/create
+   * @request body Job *body 
+   * @response 200 Job 创建成功
+   * @apikey
+   */
   async create() {
     const { ctx, service } = this;
-    const jobId = ctx.query.jobId;
-    const jobName = ctx.query.jobName;
-    const academyId = ctx.query.academyId;
-    const details = ctx.query.details;
-    const date = await service.job.createOne(jobName, academyId, details);
-    ctx.body = date;
+    let data = ctx.request.body;
+    ctx.body = await service.job.createOne(data);
+  }
+
+  /**
+   * @summary 删除职业记录
+   * @description 根据职业名称删除职业记录
+   * @router delete /api/job/delete
+   * @request query string *name
+   * @response 200 Job 删除成功
+   * @apikey
+   */
+  async delete() {
+    const { ctx, service } = this;
+    const name = ctx.query.name;
+    ctx.body = await service.job.delete(name)
   }
 }
 
