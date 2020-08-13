@@ -102,5 +102,28 @@ module.exports = {
     details: { type: 'string', description: '详细描述' },
     createdAt: { type: 'string', description: '创建时间' },
     updatedAt: { type: 'string', description: '更新时间' }
+  },
+  intention:{
+    id: {type: 'number',description: 'id'},
+    sno: {type: 'string',description: '学号'},
+    sname: {type: 'string',description: '姓名'},
+    academyId: {type: 'number',description: '学院'},
+    educationBackground: {type: 'number',description: '学历'},
+    majorId: {type: 'number',description: '专业'},
+    status: {type: 'number',description: '就业状态' },
+    employmentOrientation: {type:   'string',description: 'id'},
+    intentionalityCity1: {type:   'string',description: '意向城市1'},
+    intentionalityCity2: {type:   'string',description: '意向城市2'},
+    intentionalityCity3: {type:   'string',description: '意向城市3'},
+    intentionalityJob1: {type: 'number',description: '意向职位1'},
+    intentionalityJob2: {type: 'number',description: '意向职位2'},
+    intentionalityJob3: {type: 'number',description: '意向职位3'},
+    phone: {type:   'string',description: '手机号码'},
+    qq: {type:   'string',description: 'qq'},
+    skill: {type:   'string',description: '技能'},
+    location: {type:   'string',description: '公司地址'},
+    company: {type:   'string',description: '公司名称'},
+    salary: {type: "DOUBLE",description: '薪资'},
+    failedCourses: {type:   'string',description: '挂科科目'}
   }
 }
