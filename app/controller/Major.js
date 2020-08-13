@@ -19,6 +19,20 @@ class MajorController extends Controller {
     let data = ctx.request.body;
     ctx.body = await service.major.createOne(data);
   }
+
+  /**
+   * @summary 删除专业记录
+   * @description 根据专业名称删除专业记录
+   * @router delete /api/major/delete
+   * @request query string *name
+   * @response 200 Major 删除成功
+   * @apikey
+   */
+  async delete() {
+    const { ctx, service } = this;
+    const name = ctx.query.name;
+    ctx.body = await service.major.delete(name)
+  }
 }
 
 module.exports = MajorController;
