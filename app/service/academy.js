@@ -116,6 +116,74 @@ class AcademyService extends Service {
       message: '更新成功!'
     }
   }
+
+  /**
+   * 获取学院信息列表
+   * @param {*} page 
+   * @param {*} pagesize 
+   */
+  async getAcademyList(page, pagesize) {
+    const { ctx } = this;
+    const res = await ctx.model.Academy.findAll({
+      offset: (page - 1) * pagesize,
+      limit: pagesize
+    })
+    return {
+      code: 0,
+      data: res,
+      total: res.length,
+      message: "查询成功！"
+    }
+  }
+
+  /**
+   * 根据学院编号Number查询学院信息
+   * @param {*} number
+   */
+  async findByNumber(number) {
+    const { ctx } = this;
+    const res = await ctx.model.Academy.findAll({
+      where: {
+        number: number
+      }
+    })
+    return {
+      code: 0,
+      data: res,
+      total: res.length,
+      message: "查询成功！"
+    }
+  }
+
+  /**
+   * 根据学院名称查询学院信息
+   * @param {*} name
+   */
+  async findByName(name) {
+    const { ctx } = this;
+    const res = await ctx.model.Academy.findAll({
+      where: {
+        name: name
+      }
+    })
+    if (res.length) {
+      return {
+        code: 0,
+        data: res,
+        total: res.length,
+        message: "查询成功！"
+      }
+  
+    } else {
+      return {
+        code: 1,
+        data: res,
+        total: res.length,
+        message: "查询失败！"
+      }
+  
+    }
+  }
 }
 
 module.exports = AcademyService;

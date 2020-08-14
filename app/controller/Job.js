@@ -17,7 +17,7 @@ class JobController extends Controller {
   async createOne() {
     const { ctx, service } = this;
     let data = ctx.request.body;
-    ctx.body = await service.job.create(data);
+    ctx.body = await service.job.createOne(data);
   }
 
   /**
@@ -77,6 +77,51 @@ class JobController extends Controller {
     const data = ctx.request.body;
     ctx.body = await service.job.update(id, data);
   }
+
+  /**
+   * @summary 获取职位信息列表
+   * @description 获取职位信息列表
+   * @router get /api/job/findAll
+   * @request query integer *page
+   * @request query integer *pagesize
+   * @response 200 Job 查询成功
+   * @apikey
+   */
+  async findAll() {
+    const { ctx, service } = this;
+    const page = ctx.query.page;
+    const pagesize = parseInt(ctx.query.pagesize);
+    ctx.body = await service.job.getJobList(page, pagesize);
+  }
+
+  /**
+   * @summary 根据职业名称查询职业信息
+   * @description 根据职业名称查询职业信息
+   * @router get /api/job/findByName
+   * @request query string *name
+   * @response 200 Job 查询成功
+   * @apikey
+   */
+  async findByName() {
+    const { ctx, service } = this;
+    const name = ctx.query.name;
+    ctx.body = await service.job.findByName(name);
+  }
+
+  /**
+   * @summary 根据职业所属学院范畴查询职业列表
+   * @description 根据职业所属学院范畴查询职业列表
+   * @router get /api/job/findByAcademy
+   * @request query integer *academy
+   * @response 200 Job 查询成功
+   * @apikey
+   */
+  async findByAcademy() {
+    const { ctx, service } = this;
+    const academy = ctx.query.academy;
+    ctx.body = await service.job.findByAcademy(academy);
+  }
+
 }
 
 module.exports = JobController;

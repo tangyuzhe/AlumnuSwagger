@@ -116,6 +116,113 @@ class MajorService extends Service {
       message: '更新成功!'
     }
   }
+
+  /**
+   * 获取专业信息列表
+   * @param {*} page 
+   * @param {*} pagesize 
+   */
+  async getMajorList(page, pagesize) {
+    const { ctx } = this;
+    const res = await ctx.model.Major.findAll({
+      offset: (page - 1) * pagesize,
+      limit: pagesize
+    })
+    return {
+      code: 0,
+      data: res,
+      total: res.length,
+      message: "查询成功！"
+    }
+  }
+
+  /**
+   * 根据本硕标志获取专业信息列表
+   * @param {*} mark
+   */
+  async findByMark(mark) {
+    const { ctx } = this;
+    const res = await ctx.model.Major.findAll({
+      where: {
+        mark: mark
+      }
+    })
+    if (res.length) {
+      return {
+        code: 0,
+        data: res,
+        total: res.length,
+        message: "查询成功！"
+      }
+  
+    } else {
+      return {
+        code: 1,
+        data: res,
+        total: res.length,
+        message: "查询失败,不存在符合条件的记录！"
+      }
+    }
+  }
+
+  /**
+   * 根据所属学院获取专业信息列表
+   * @param {*} academy
+   */
+  async findByAcademy(academy) {
+    const { ctx } = this;
+    const res = await ctx.model.Major.findAll({
+      where: {
+        academy: academy
+      }
+    })
+    if (res.length) {
+      return {
+        code: 0,
+        data: res,
+        total: res.length,
+        message: "查询成功！"
+      }
+  
+    } else {
+      return {
+        code: 1,
+        data: res,
+        total: res.length,
+        message: "查询失败,不存在符合条件的记录！"
+      }
+    }
+  }
+
+  /**
+   * 根据专业名称查询专业信息
+   * @param {*} name
+   */
+  async findByName(name) {
+    const { ctx } = this;
+    const res = await ctx.model.Major.findAll({
+      where: {
+        name: name
+      }
+    })
+    if (res.length) {
+      return {
+        code: 0,
+        data: res,
+        total: res.length,
+        message: "查询成功！"
+      }
+  
+    } else {
+      return {
+        code: 1,
+        data: res,
+        total: res.length,
+        message: "查询失败,不存在符合条件的记录！"
+      }
+    }
+  }
+
 }
 
 module.exports = MajorService;

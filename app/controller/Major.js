@@ -77,6 +77,64 @@ class MajorController extends Controller {
     const data = ctx.request.body;
     ctx.body = await service.major.update(id, data);
   }
+
+  /**
+   * @summary 获取专业信息列表
+   * @description 获取专业信息列表
+   * @router get /api/major/findAll
+   * @request query integer *page
+   * @request query integer *pagesize
+   * @response 200 Major 查询成功
+   * @apikey
+   */
+  async findAll() {
+    const { ctx, service } = this;
+    const page = ctx.query.page;
+    const pagesize = parseInt(ctx.query.pagesize);
+    ctx.body = await service.major.getMajorList(page, pagesize);
+  }
+
+  /**
+   * @summary 根据本硕标志获取专业信息列表
+   * @description 根据本硕标志获取专业信息列表
+   * @router get /api/major/findByMark
+   * @request query string *mark
+   * @response 200 Major 查询成功
+   * @apikey
+   */
+  async findByMark() {
+    const { ctx, service } = this;
+    const mark = ctx.query.mark;
+    ctx.body = await service.major.findByMark(mark);
+  }
+
+  /**
+   * @summary 根据所属学院获取专业信息列表
+   * @description 根据所属学院获取专业信息列表
+   * @router get /api/major/findByAcademy
+   * @request query string *academy
+   * @response 200 Academy 查询成功
+   * @apikey
+   */
+  async findByAcademy() {
+    const { ctx, service } = this;
+    const academy = ctx.query.academy;
+    ctx.body = await service.major.findByAcademy(academy);
+  }
+
+  /**
+   * @summary 根据专业名称查询专业信息
+   * @description 根据专业名称查询专业信息
+   * @router get /api/major/findByName
+   * @request query string *name
+   * @response 200 Major 查询成功
+   * @apikey
+   */
+  async findByName() {
+    const { ctx, service } = this;
+    const name = ctx.query.name;
+    ctx.body = await service.major.findByName(name);
+  }
 }
 
 module.exports = MajorController;
