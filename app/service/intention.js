@@ -1,6 +1,8 @@
 'use strict';
 
 const Service = require('egg').Service;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 class IntentionService extends Service {
     /**
@@ -94,7 +96,76 @@ async removeIntention(id){
   }
 }
 
-}
+ /**
+   * 查询问卷
+   * @param {*} queryForm 
+   */
+  async queryByForm(queryForm){
+    const {ctx} = this;
+    let where = {};
+    let order = [];
+        if ((queryForm.keyword != ''&&queryForm.keyword!=null)) {
+            where = {
+                [Op.or]: [{ sno: { [Op.like]: '%' + queryForm.keyword + '%' } }, 
+                    { sname: { [Op.like]: '%' + queryForm.keyword + '%' } },
+                    { intentionality_city1: { [Op.like]: '%' + queryForm.keyword + '%' } },
+                    { intentionality_city2: { [Op.like]: '%' + queryForm.keyword + '%' } },
+                    { intentionality_city3: { [Op.like]: '%' + queryForm.keyword + '%' } },
+                    { phone: { [Op.like]: '%' + queryForm.keyword + '%' } },
+                    { qq: { [Op.like]: '%' + queryForm.keyword + '%' } },
+                    { skill: { [Op.like]: '%' + queryForm.keyword + '%' } },
+                    { location: { [Op.like]: '%' + queryForm.keyword + '%' } },
+                    { company: { [Op.like]: '%' + queryForm.keyword + '%' } },
+                    { failedCourses: { [Op.like]: '%' + queryForm.keyword + '%' } }],
+            };
+            if(queryForm.academyId!=''&&queryForm.academyId!=null){
+              where.academy_id = queryForm.academyId
+            };
+            if(queryForm.educationBackground!=''&&queryForm.educationBackground!=null){
+              where.education_background = queryForm.educationBackground
+            };
+            if(queryForm.majorId!=''&&queryForm.majorId!=null){
+              where.major_id = queryForm.majorId
+            };
+            var array = Object.getOwnPropertySymbols(where);
+            if(queryForm.intentionalityCity!=''&&queryForm.intentionalityCity!=null){
+              where[array[0]].push({ intentionality_city1: { [Op.like]: '%' + queryForm.intentionalityCity + '%' }})
+              where[array[0]].push({ intentionality_city2: { [Op.like]: '%' + queryForm.intentionalityCity + '%' }})
+              where[array[0]].push({ intentionality_city3: { [Op.like]: '%' + queryForm.intentionalityCity + '%' }})
+            };
+            if(queryForm.intentionalityJob!=''&&queryForm.intentionalityJob!=null){
+              where[array[0]].push({ intentionality_job1: queryForm.intentionalityJob})
+              where[array[0]].push({ intentionality_job2: queryForm.intentionalityJob})
+              where[array[0]].push({ intentionality_job3: queryForm.intentionalityJob})
+            };
+            if(queryForm.sort===0){
+              order.push(['created_at','DESC'])
+            }else if(queryForm.sort===1){
+              order.push(['created_at'])
+            }
+              where.salary = {
+                [Op.and]:[
+                  {[Op.gte]: queryForm.mixSalary},
+                  {[Op.lte]: queryForm.maxSalary},
+                ]
+            } 
+            console.log(where)
+            const start = (queryForm.page - 1) * queryForm.pageSize;
+            const res = await ctx.model.Intention.findAndCountAll({
+                 where,
+                 order,
+                 offset: start,
+                 limit: Number(queryForm.pageSize)
+                })
+                return{
+                  code: 0,
+                  message: '查询成功',
+                  data: res
+                 }
+            }
+
+          }
+      }
 
 
 

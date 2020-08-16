@@ -26,7 +26,7 @@ class IntentionController extends Controller {
    * @description 记录毕业生就业情况
    * @router put /api/Intention/updateIntention
    * @request body intention *body 
-   * @response 200 intention 创建成功
+   * @response 200 intention 更新成功
    * @apikey
    */
   async updateIntention() {
@@ -60,6 +60,19 @@ async removeIntention(){
   const { ctx, service } = this;
   ctx.body = await service.intention.removeIntention(ctx.params.id);
 }
+
+ /**
+   * @summary 查询就业问卷
+   * @description 根据传入的表单分页查询就业表
+   * @router put /api/Intention/query
+   * @request body queryForm *body 
+   * @response 200 queryForm 查询成功
+   * @apikey
+   */
+  async query() {
+    const { ctx, service } = this;
+    ctx.body = await service.intention.queryByForm(ctx.request.body)
+  }
 
 }
 
