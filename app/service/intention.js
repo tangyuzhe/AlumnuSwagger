@@ -102,11 +102,11 @@ async removeIntention(id){
    */
   async queryByForm(queryForm){
     const {ctx} = this;
-    let where = {};
+    let where = {[Op.or]:[{ sno: { [Op.like]: '%' +  '%' }}]};
     let order = [];
         if ((queryForm.keyword != ''&&queryForm.keyword!=null)) {
             where = {
-                [Op.or]: [{ sno: { [Op.like]: '%' + queryForm.keyword + '%' } }, 
+                [Op.or]: [{ sno: { [Op.like]: '%' + queryForm.keyword + '%' }}, 
                     { sname: { [Op.like]: '%' + queryForm.keyword + '%' } },
                     { intentionality_city1: { [Op.like]: '%' + queryForm.keyword + '%' } },
                     { intentionality_city2: { [Op.like]: '%' + queryForm.keyword + '%' } },
@@ -117,7 +117,7 @@ async removeIntention(id){
                     { location: { [Op.like]: '%' + queryForm.keyword + '%' } },
                     { company: { [Op.like]: '%' + queryForm.keyword + '%' } },
                     { failedCourses: { [Op.like]: '%' + queryForm.keyword + '%' } }],
-            };
+            };}
             if(queryForm.academyId!=''&&queryForm.academyId!=null){
               where.academy_id = queryForm.academyId
             };
@@ -143,12 +143,24 @@ async removeIntention(id){
             }else if(queryForm.sort===1){
               order.push(['created_at'])
             }
-              where.salary = {
+            if(queryForm.mixSalary==''||queryForm.mixSalary==null){
+              queryForm.mixSalary = 0
+            }
+            if(queryForm.maxSalary==''||queryForm.maxSalary==null){
+              queryForm.maxSalary = 100000000
+            }
+            where.salary = {
                 [Op.and]:[
                   {[Op.gte]: queryForm.mixSalary},
                   {[Op.lte]: queryForm.maxSalary},
                 ]
-            } 
+            }
+            if(queryForm.page==''||queryForm.page==null){
+              queryForm.page = 1
+            }
+            if(queryForm.pageSize==''||queryForm.pageSize==null){
+              queryForm.pageSize = 10
+            }
             console.log(where)
             const start = (queryForm.page - 1) * queryForm.pageSize;
             const res = await ctx.model.Intention.findAndCountAll({
@@ -165,7 +177,7 @@ async removeIntention(id){
             }
 
           }
-      }
+      
 
 
 
