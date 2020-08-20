@@ -18,33 +18,6 @@ class JobService extends Service {
     }
 
     /**
-     * 根据输入名称删除职业记录
-     * @param {*} name 
-     */
-    async deleteByName(name) {
-      const { ctx } = this;
-      const data = await ctx.model.Job.findOne({
-        where: {
-          name: name
-        }
-      });
-      if (!data) {
-        ctx.throw(404, { code: 1, message: "没有此职业记录！" })
-      } else {
-        const res = await ctx.model.Job.destroy({
-          where: {
-            name: name
-          }
-        })
-        return {
-          code: 0,
-          data: res,
-          message: '删除成功!'
-        }
-      }
-    }
-
-    /**
      * 根据输入id删除职业记录
      * @param {*} id 
      */
@@ -72,7 +45,7 @@ class JobService extends Service {
     }
 
     /**
-     * 根据输入academy删除职业记录
+     * 根据输入academy批量删除职业记录
      * @param {*} academy 
      */
     async deleteByAcademy(academy) {
@@ -83,7 +56,7 @@ class JobService extends Service {
         }
       });
       if (!data) {
-        ctx.throw(404, { code: 1, message: "没有此职业记录！" })
+        ctx.throw(404, { code: 1, message: "没有符合条件的职业记录！" })
       } else {
         const res = await ctx.model.Job.destroy({
           where: {

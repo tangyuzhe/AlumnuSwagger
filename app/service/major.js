@@ -18,34 +18,7 @@ class MajorService extends Service {
     }
 
     /**
-     * 根据输入名称删除专业记录
-     * @param {*} name 
-     */
-    async deleteByName(name) {
-      const { ctx } = this;
-      const data = await ctx.model.Major.findOne({
-        where: {
-          name: name
-        }
-      });
-      if (!data) {
-        ctx.throw(404, { code: 1, message: "没有此专业记录！" })
-      } else {
-        const res = await ctx.model.Major.destroy({
-          where: {
-            name: name
-          }
-        })
-        return {
-          code: 0,
-          data: res,
-          message: '删除成功'
-        }
-      }
-    }
-
-    /**
-     * 根据输入id删除专业记录
+     * 根据id删除专业记录
      * @param {*} id 
      */
     async deleteById(id) {
@@ -72,7 +45,7 @@ class MajorService extends Service {
     }
 
     /**
-     * 根据输入academy删除专业记录
+     * 根据输入academy批量删除专业记录
      * @param {*} academy 
      */
     async deleteByAcademy(academy) {
@@ -101,7 +74,7 @@ class MajorService extends Service {
   /**
    * 更新专业记录
    * @param {*} id 
-   * @param {*} payload 
+   * @param {*} payload
    */
   async update(id, payload) {
     const { ctx } = this;
@@ -193,36 +166,6 @@ class MajorService extends Service {
       }
     }
   }
-
-  /**
-   * 根据专业名称查询专业信息
-   * @param {*} name
-   */
-  async findByName(name) {
-    const { ctx } = this;
-    const res = await ctx.model.Major.findAll({
-      where: {
-        name: name
-      }
-    })
-    if (res.length) {
-      return {
-        code: 0,
-        data: res,
-        total: res.length,
-        message: "查询成功！"
-      }
-  
-    } else {
-      return {
-        code: 1,
-        data: res,
-        total: res.length,
-        message: "查询失败,不存在符合条件的记录！"
-      }
-    }
-  }
-
 }
 
 module.exports = MajorService;

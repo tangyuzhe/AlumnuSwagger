@@ -21,20 +21,6 @@ class MajorController extends Controller {
   }
 
   /**
-   * @summary 根据专业名称删除专业记录
-   * @description 根据专业名称删除专业记录
-   * @router delete /api/major/deleteByName
-   * @request query string *name
-   * @response 200 Major 删除成功
-   * @apikey
-   */
-  async deleteByName() {
-    const { ctx, service } = this;
-    const name = ctx.query.name;
-    ctx.body = await service.major.deleteByName(name)
-  }
-
-  /**
    * @summary 根据专业id删除专业记录
    * @description 根据专业id删除专业记录
    * @router delete /api/major/deleteById
@@ -49,8 +35,8 @@ class MajorController extends Controller {
   }
 
   /**
-   * @summary 根据学院id删除专业记录
-   * @description 根据学院id删除专业记录
+   * @summary 根据学院id批量删除专业记录
+   * @description 根据学院id批量删除专业记录
    * @router delete /api/major/deleteByAcademy
    * @request query integer *academy
    * @response 200 Major 删除成功!
@@ -120,20 +106,6 @@ class MajorController extends Controller {
     const { ctx, service } = this;
     const academy = ctx.query.academy;
     ctx.body = await service.major.findByAcademy(academy);
-  }
-
-  /**
-   * @summary 根据专业名称查询专业信息
-   * @description 根据专业名称查询专业信息
-   * @router get /api/major/findByName
-   * @request query string *name
-   * @response 200 Major 查询成功
-   * @apikey
-   */
-  async findByName() {
-    const { ctx, service } = this;
-    const name = ctx.query.name;
-    ctx.body = await service.major.findByName(name);
   }
 }
 

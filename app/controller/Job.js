@@ -6,32 +6,17 @@ const Controller = require('egg').Controller;
  * @controller Job
  */
 class JobController extends Controller {
- /**
+  /**
    * @summary 新增职业信息
    * @description 新增一条职业信息
    * @router post /api/job/create
-   * @request body Job *body 
+   * @request body Job *body
    * @response 200 Job 增加成功！
    * @apikey
    */
   async createOne() {
     const { ctx, service } = this;
-    let data = ctx.request.body;
-    ctx.body = await service.job.createOne(data);
-  }
-
-  /**
-   * @summary 根据职业名称删除职业记录
-   * @description 根据职业名称删除职业记录
-   * @router delete /api/job/deleteByName
-   * @request query string *name
-   * @response 200 Job 删除成功!
-   * @apikey
-   */
-  async deleteByName() {
-    const { ctx, service } = this;
-    const name = ctx.query.name;
-    ctx.body = await service.job.deleteByName(name);
+    ctx.body = await service.job.createOne(ctx.request.body);
   }
 
   /**
@@ -49,8 +34,8 @@ class JobController extends Controller {
   }
 
   /**
-   * @summary 根据学院id删除职业记录
-   * @description 根据学院iid删除职业记录
+   * @summary 根据学院id批量删除职业记录
+   * @description 根据学院id批量删除职业记录
    * @router delete /api/job/deleteByAcademy
    * @request query integer *academy
    * @response 200 Job 删除成功!
