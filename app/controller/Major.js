@@ -81,8 +81,8 @@ class MajorController extends Controller {
   }
 
   /**
-   * @summary 根据本硕标志获取专业信息列表
-   * @description 根据本硕标志获取专业信息列表
+   * @summary 根据本科/硕士获取专业信息列表
+   * @description 根据本科/硕士获取专业信息列表
    * @router get /api/major/findByMark
    * @request query string *mark
    * @response 200 Major 查询成功
@@ -95,8 +95,8 @@ class MajorController extends Controller {
   }
 
   /**
-   * @summary 根据所属学院获取专业信息列表
-   * @description 根据所属学院获取专业信息列表
+   * @summary 根据学院id获取专业信息列表
+   * @description 根据学院id获取专业信息列表
    * @router get /api/major/findByAcademy
    * @request query string *academy
    * @response 200 Academy 查询成功

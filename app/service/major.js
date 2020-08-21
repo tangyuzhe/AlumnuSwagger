@@ -139,7 +139,7 @@ class MajorService extends Service {
   }
 
   /**
-   * 根据所属学院获取专业信息列表
+   * 根据学院id获取专业信息列表
    * @param {*} academy
    */
   async findByAcademy(academy) {

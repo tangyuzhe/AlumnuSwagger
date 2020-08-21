@@ -132,7 +132,7 @@ module.exports = {
   },
   Major: {
     id: { type: 'number', description: '专业ID' },
-    mark: { type: 'number', description: '本硕标记' },
+    mark: { type: 'string', description: '本硕标记' },
     name: { type: 'string', description: '专业名称' },
     academy: { type: 'number', description: '所属学院ID' },
     details: { type: 'string', description: '详细描述' }

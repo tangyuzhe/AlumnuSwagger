@@ -8,7 +8,7 @@ module.exports = app => {
             primaryKey: true,
         },
         mark: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(4),
             allowNull: false,
         },
         name: {
