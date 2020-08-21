@@ -98,7 +98,7 @@ class MajorController extends Controller {
    * @summary 根据学院id获取专业信息列表
    * @description 根据学院id获取专业信息列表
    * @router get /api/major/findByAcademy
-   * @request query string *academy
+   * @request query integer *academy
    * @response 200 Academy 查询成功
    * @apikey
    */
