@@ -1,6 +1,8 @@
 'use strict';
 
 const Service = require('egg').Service;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 class JobService extends Service {
     /**
@@ -110,14 +112,14 @@ class JobService extends Service {
   }
     
   /**
-   * 根据职业名称查询职业信息
+   * 根据职业名称模糊查询职业信息
    * @param {*} name
    */
   async findByName(name) {
     const { ctx } = this;
     const res = await ctx.model.Job.findAll({
       where: {
-        name: name
+        name: {[Op.like]: '%' + name + '%'}
       }
     })
     if (res.length) {

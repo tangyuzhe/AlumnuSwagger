@@ -1,7 +1,8 @@
 'use strict';
 
 const Service = require('egg').Service;
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 class MajorService extends Service {
     /**
      * 新增专业记录
@@ -147,6 +148,35 @@ class MajorService extends Service {
     const res = await ctx.model.Major.findAll({
       where: {
         academy: academy
+      }
+    })
+    if (res.length) {
+      return {
+        code: 0,
+        data: res,
+        total: res.length,
+        message: "查询成功！"
+      }
+  
+    } else {
+      return {
+        code: 1,
+        data: res,
+        total: res.length,
+        message: "查询失败,不存在符合条件的记录！"
+      }
+    }
+  }
+
+  /**
+   * 根据职业名称模糊查询职业信息
+   * @param {*} name
+   */
+  async findByName(name) {
+    const { ctx } = this;
+    const res = await ctx.model.Major.findAll({
+      where: {
+        name: {[Op.like]: '%' + name + '%'}
       }
     })
     if (res.length) {

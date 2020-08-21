@@ -80,8 +80,8 @@ class JobController extends Controller {
   }
 
   /**
-   * @summary 根据职业名称查询职业信息
-   * @description 根据职业名称查询职业信息
+   * @summary 根据职业名称关键字模糊查找职业信息
+   * @description 根据职业名称关键字模糊查找职业信息
    * @router get /api/job/findByName
    * @request query string *name
    * @response 200 Job 查询成功
@@ -94,8 +94,8 @@ class JobController extends Controller {
   }
 
   /**
-   * @summary 根据职业所属学院范畴查询职业列表
-   * @description 根据职业所属学院范畴查询职业列表
+   * @summary 根据学院id获取职业列表
+   * @description 根据学院id获取职业列表
    * @router get /api/job/findByAcademy
    * @request query integer *academy
    * @response 200 Job 查询成功
@@ -106,7 +106,6 @@ class JobController extends Controller {
     const academy = ctx.query.academy;
     ctx.body = await service.job.findByAcademy(academy);
   }
-
 }
 
 module.exports = JobController;

@@ -81,7 +81,7 @@ class MajorController extends Controller {
   }
 
   /**
-   * @summary 根据本科/硕士获取专业信息列表
+   * @summary 根据本科/硕士获取专业信息列表（输入本科/硕士）
    * @description 根据本科/硕士获取专业信息列表
    * @router get /api/major/findByMark
    * @request query string *mark
@@ -106,6 +106,20 @@ class MajorController extends Controller {
     const { ctx, service } = this;
     const academy = ctx.query.academy;
     ctx.body = await service.major.findByAcademy(academy);
+  }
+
+  /**
+   * @summary 根据专业名称关键字模糊查找专业信息
+   * @description 根据专业名称关键字模糊查找专业信息
+   * @router get /api/major/findByName
+   * @request query string *name
+   * @response 200 Major 查询成功
+   * @apikey
+   */
+  async findByName() {
+    const { ctx, service } = this;
+    const name = ctx.query.name;
+    ctx.body = await service.major.findByName(name);
   }
 }
 
