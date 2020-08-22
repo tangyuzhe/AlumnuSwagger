@@ -149,5 +149,9 @@ module.exports = {
     sort:{type: "number",description: '排序'},
     pageSize:{type: "number",description: '页的大小'},
     page:{type: "number",description: '页数'}
+  },
+  intenCensus:{
+    employmentOrientation: { type: 'string', description: '方向'},
+    count: { type: 'number', description: '人数'}
   }
 }

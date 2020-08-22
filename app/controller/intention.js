@@ -74,6 +74,17 @@ async removeIntention(){
     ctx.body = await service.intention.queryByForm(ctx.request.body)
   }
 
+  /**
+   * @summary 根据就业意向分类
+   * @description 根据就业意向列出每个意向的人数
+   * @router get /api/Intention/intention
+   * @response 200 intenCensus 查询成功
+   * @apikey
+   */
+  async getIntention(){
+    const { ctx, service } = this;
+    ctx.body = await service.intention.getIntention();
+  }
 }
 
 module.exports = IntentionController;

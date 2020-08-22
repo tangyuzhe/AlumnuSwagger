@@ -174,11 +174,23 @@ async removeIntention(id){
                   message: '查询成功',
                   data: res
                  }
-            }
+  }
 
-          }
-      
-
-
-
+  /**
+   * 获取意向统计
+   */
+  async getIntention(){
+    const {ctx} = this;
+    const res = await ctx.model.Intention.findAll({
+      attributes:['employmentOrientation', [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
+      group: 'employmentOrientation',
+      raw:true
+    });
+    return {
+      code: 0,
+      message: '查询成功！',
+      date: res
+    }
+  }
+}
 module.exports = IntentionService;
