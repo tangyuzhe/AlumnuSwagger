@@ -33,7 +33,7 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    signed_time: {
+    signed: {
       type: DataTypes.STRING(255),
       allowNull: true
     },

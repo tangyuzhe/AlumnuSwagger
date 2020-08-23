@@ -68,7 +68,7 @@ module.exports = {
     activity_id: { type: 'number', description: '活动id' },
     activity_theme: { type: 'string', description: '活动主题' },
     registration_time: { type: 'string', description: '报名时间' },
-    signed_time: { type: 'string', description: '签到时间' },
+    signed: { type: 'string', description: '签到' },
     report: { type: 'string', description: '报告内容' },
     report_grade: { type: 'number', description: '报告分数' }
   },
@@ -95,33 +95,33 @@ module.exports = {
     read_status: { type: 'number', description: '阅读状态' },
     read_time: { type: 'string', description: '阅读时间' }
   },
-  intention:{
-    id: {type: 'number',description: 'id'},
-    sno: {type: 'string',description: '学号'},
-    sname: {type: 'string',description: '姓名'},
-    academyId: {type: 'number',description: '学院'},
-    educationBackground: {type: 'number',description: '学历'},
-    majorId: {type: 'number',description: '专业'},
-    status: {type: 'number',description: '就业状态' },
-    employmentOrientation: {type:   'string',description: 'id'},
-    intentionalityCity1: {type:   'string',description: '意向城市1'},
-    intentionalityCity2: {type:   'string',description: '意向城市2'},
-    intentionalityCity3: {type:   'string',description: '意向城市3'},
-    intentionalityJob1: {type: 'number',description: '意向职位1'},
-    intentionalityJob2: {type: 'number',description: '意向职位2'},
-    intentionalityJob3: {type: 'number',description: '意向职位3'},
-    phone: {type:   'string',description: '手机号码'},
-    qq: {type:   'string',description: 'qq'},
-    skill: {type:   'string',description: '技能'},
-    location: {type:   'string',description: '公司地址'},
-    company: {type:   'string',description: '公司名称'},
-    salary: {type: "number",description: '薪资'},
-    failedCourses: {type:   'string',description: '挂科科目'}
+  intention: {
+    id: { type: 'number', description: 'id' },
+    sno: { type: 'string', description: '学号' },
+    sname: { type: 'string', description: '姓名' },
+    academyId: { type: 'number', description: '学院' },
+    educationBackground: { type: 'number', description: '学历' },
+    majorId: { type: 'number', description: '专业' },
+    status: { type: 'number', description: '就业状态' },
+    employmentOrientation: { type: 'string', description: 'id' },
+    intentionalityCity1: { type: 'string', description: '意向城市1' },
+    intentionalityCity2: { type: 'string', description: '意向城市2' },
+    intentionalityCity3: { type: 'string', description: '意向城市3' },
+    intentionalityJob1: { type: 'number', description: '意向职位1' },
+    intentionalityJob2: { type: 'number', description: '意向职位2' },
+    intentionalityJob3: { type: 'number', description: '意向职位3' },
+    phone: { type: 'string', description: '手机号码' },
+    qq: { type: 'string', description: 'qq' },
+    skill: { type: 'string', description: '技能' },
+    location: { type: 'string', description: '公司地址' },
+    company: { type: 'string', description: '公司名称' },
+    salary: { type: "number", description: '薪资' },
+    failedCourses: { type: 'string', description: '挂科科目' }
   },
   Job: {
     id: { type: 'number', description: '职位ID' },
     name: { type: 'string', description: '职位名称' },
-    academy: { type: 'number', description: '所属学院ID'},
+    academy: { type: 'number', description: '所属学院ID' },
     details: { type: 'string', description: '详细描述' }
   },
   Academy: {
@@ -137,21 +137,21 @@ module.exports = {
     academy: { type: 'number', description: '所属学院ID' },
     details: { type: 'string', description: '详细描述' }
   },
-  queryForm:{
-    keyword:{type:'string',description:'关键词'},
-    academyId: {type: 'number',description: '学院'},
-    educationBackground: {type: 'number',description: '学历'},
-    majorId: {type: 'number',description: '专业'},
-    intentionalityCity: {type:   'string',description: '意向城市'},
-    intentionalityJob: {type: 'number',description: '意向职位'},
-    mixSalary: {type: "number",description: '最小薪资'},
-    maxSalary: {type: "number",description: '最大薪资'},
-    sort:{type: "number",description: '排序'},
-    pageSize:{type: "number",description: '页的大小'},
-    page:{type: "number",description: '页数'}
+  queryForm: {
+    keyword: { type: 'string', description: '关键词' },
+    academyId: { type: 'number', description: '学院' },
+    educationBackground: { type: 'number', description: '学历' },
+    majorId: { type: 'number', description: '专业' },
+    intentionalityCity: { type: 'string', description: '意向城市' },
+    intentionalityJob: { type: 'number', description: '意向职位' },
+    mixSalary: { type: "number", description: '最小薪资' },
+    maxSalary: { type: "number", description: '最大薪资' },
+    sort: { type: "number", description: '排序' },
+    pageSize: { type: "number", description: '页的大小' },
+    page: { type: "number", description: '页数' }
   },
-  intenCensus:{
-    employmentOrientation: { type: 'string', description: '方向'},
-    count: { type: 'number', description: '人数'}
+  intenCensus: {
+    employmentOrientation: { type: 'string', description: '方向' },
+    count: { type: 'number', description: '人数' }
   }
 }

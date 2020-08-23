@@ -71,7 +71,7 @@ class StudentActivitiesController extends Controller {
    * @description 签到功能、提交报告、提交报告分数
    * @router put /api/studentactivity/updatestudentactivity
    * @request query integer *id
-   * @request query string signed_time
+   * @request query string signed
    * @request query string report
    * @request query integer report_score
    * @response 200 StuActivity 修改成功
@@ -80,10 +80,10 @@ class StudentActivitiesController extends Controller {
   async UpdateStudentActivity() {
     const { ctx, service } = this;
     const id = ctx.query.id;
-    const signed_time = ctx.query.signed_time;
+    const signed = ctx.query.signed;
     const report = ctx.query.report;
     const report_score = parseInt(ctx.query.report_score);
-    ctx.body = await service.studentactivities.updateStudentActivity(id, signed_time, report, report_score)
+    ctx.body = await service.studentactivities.updateStudentActivity(id, signed, report, report_score)
   }
 
   /**
@@ -102,6 +102,19 @@ class StudentActivitiesController extends Controller {
     const page = ctx.query.page;
     const pagesize = parseInt(ctx.query.pagesize);
     ctx.body = await service.studentactivities.findAllStudents(activity_id, page, pagesize)
+  }
+
+  /**
+   * @summary 统计签到人数
+   * @description 统计某活动签到人数
+   * @router get /api/studentactivity/countSigninNumber
+   * @request query integer *activity_id
+   * @response 200 StuActivity 获取成功
+   */
+  async CountNumber() {
+    const { ctx, service } = this;
+    const activity_id = ctx.query.activity_id;
+    ctx.body = await service.studentactivities.CountSignNumber(activity_id);
   }
 }
 module.exports = StudentActivitiesController;

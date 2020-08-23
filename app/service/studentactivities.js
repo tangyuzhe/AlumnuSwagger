@@ -1,5 +1,7 @@
 'use strict';
 const Service = require('egg').Service;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 class StudentActivitiesService extends Service {
   /**
    * 添加活动信息
@@ -88,18 +90,18 @@ class StudentActivitiesService extends Service {
   /**
    * 
    * @param {*} id 
-   * @param {*} signed_time
+   * @param {*} signed
    * @param {*} report
    * @param {*} report_score
    */
-  async updateStudentActivity(id, signed_time, report, report_score) {
+  async updateStudentActivity(id, signed, report, report_score) {
     const { ctx } = this;
     const data = await ctx.model.StudentActivities.findByPk(id);
     if (!data) {
       ctx.throw(404, { code: 1, message: "未查询到该活动" })
     } else {
       const res = await ctx.model.StudentActivities.update({
-        signed_time: signed_time,
+        signed: signed,
         report: report,
         report_score: report_score
       }, { where: { id: id } })
@@ -127,6 +129,24 @@ class StudentActivitiesService extends Service {
       }
     })
     return res
+  }
+
+  /**
+   * 统计签到人数
+   * @param {*} activity_id 
+   */
+  async CountSignNumber(activity_id) {
+    const { ctx } = this;
+    const res = await ctx.model.StudentActivities.findAndCountAll({
+      where: {
+        activity_id: activity_id,
+        signed: { [Op.ne]: null }
+      }
+    })
+    return {
+      msg: '到场签到人数',
+      data: res.count
+    };
   }
 }
 
