@@ -12,6 +12,7 @@
     "egg-sequelize": "^5.2.1",
     "egg-swagger-doc": "^2.2.5",
     "egg-validate": "^1.0.0",
+    "exceljs": "^4.1.1",
     "mysql2": "^2.1.0",
     "pump": "^3.0.0",
     "silly-datetime": "^0.1.2",
@@ -27,7 +28,8 @@
     "eslint": "^4.11.0",
     "eslint-config-egg": "^6.0.0",
     "mocha": "^5.2.0",
-    "webstorm-disable-index": "^1.2.0"
+    "webstorm-disable-index": "^1.2.0",
+    "xlsx": "^0.16.6"
   },
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-server",

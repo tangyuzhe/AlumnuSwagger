@@ -8,7 +8,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1490750627161_5967';
   config.cors = {
     origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
   };
   config.swaggerdoc = {
     dirScanner: './app/controller',
@@ -31,10 +31,13 @@ module.exports = appInfo => {
 
   // 配置上传文件白名单
   config.multipart = {
-    fileExtensions: ['.pdf', '.txt', '.png', '.jpg'],
+    fileExtensions: ['.pdf', '.txt', '.png', '.jpg', '.xlsx'],
+    fileSize: '50mb', // 文件大小
+    mode: 'stream', // 必须写;千万别写错
+    whitelist: [ '.xlsx' ], // 文件类型白名单;报400错;一般就是你没写这句话;允许接收解析该类型文件;
   };
 
-  //Mysql配置
+  // Mysql配置
   config.sequelize = {
     dialect: 'mysql',
     database: 'guet',
@@ -45,23 +48,26 @@ module.exports = appInfo => {
     timezone: '+08:00',
   };
 
-  //bcrypt 密码加密
+  // bcrypt 密码加密
   config.bcrypt = {
-    saltRounds: 10
+    saltRounds: 10,
   };
 
-  //jwt token密令
+  // jwt token密令
   config.jwt = {
-    secret: "123456"
-  }
+    secret: '123456',
+  };
+
 
   config.cluster = {
     listen: {
       port: 7001,
       hostname: '127.0.0.1',
 
-    }
-  }
+    },
+  };
+
+
   return config;
 };
 
