@@ -317,12 +317,10 @@ class IntentionService extends Service {
       }
     }
     sheet.addRows(data.data.rows);
-    workbook.xlsx.writeFile(filepath + filename + '.xlsx');
-    return {
-      code: 0,
-      message: '生成表格成功！',
-    };
-
+    ctx.response.attachment(filename+ '.xlsx');
+    ctx.status = 200;
+    await workbook.xlsx.write(ctx.res);
+    ctx.res.end();
   }
 
 

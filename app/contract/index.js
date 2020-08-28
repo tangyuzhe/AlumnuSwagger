@@ -149,7 +149,6 @@ module.exports = {
     sort: { type: 'number', description: '排序' },
     pageSize: { type: 'number', description: '页的大小' },
     page: { type: 'number', description: '页数' },
-    filepath: { type: 'string', description: '保存地址' },
     filename: { type: 'string', description: '文件名称' },
   },
   intenCensus: {

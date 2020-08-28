@@ -89,10 +89,8 @@ class IntentionController extends Controller {
   /**
    * @summary 下载表格
    * @description 下载表格
-   * @router put /api/Intention/download
+   * @router post /api/Intention/download
    * @request body queryForm *body
-   * @response 200 intention 下载成功
-   * @apikey
    */
 
   async download() {
