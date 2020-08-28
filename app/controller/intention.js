@@ -96,7 +96,7 @@ class IntentionController extends Controller {
   async download() {
     const { ctx, service } = this;
     const data = await service.intention.queryDownloadData(ctx.request.body);
-    ctx.body = await service.intention.download(data, ctx.request.body.filepath, ctx.request.body.filename);
+    ctx.body = await service.intention.download(data,ctx.request.body.filename);
   }
 }
 

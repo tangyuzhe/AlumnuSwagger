@@ -268,7 +268,7 @@ class IntentionService extends Service {
   /**
    * 获取意向统计
    */
-  async download(data, filepath, filename) {
+  async download(data, filename) {
     const { ctx } = this;
     const Academy = await ctx.model.Academy.findAll();
     const Major = await ctx.model.Major.findAll();
