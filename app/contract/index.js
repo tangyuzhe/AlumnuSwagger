@@ -158,5 +158,9 @@ module.exports = {
   City: {
     city: { type: 'string', descirption: '城市名称' },
     count: { type: 'number', description: '人数' }
+  },
+  Salary: {
+    major: { type: 'string', descirpition: '专业名称' },
+    count: { type: 'string', description: '人数' }
   }
 };

@@ -138,6 +138,21 @@ class IntentionController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.intention.getJob(ctx.query.grade, ctx.query.academyNum, ctx.query.majorId, ctx.query.mark, ctx.query.order);
   }
+
+  /**
+   * @summary 统计学院指定年级各专业期望或者所得平均薪资
+   * @description 统计学院指定年级各专业期望或者所得平均薪资,status=1,则统计已签约平均薪资；status=0，则统计意愿平均薪资
+   * @router get /api/Intention/salary
+   * @request query integer *grade
+   * @request query string *academyNum
+   * @request query integer *status
+   * @response 200 Salary 查询成功
+   * @apikey
+   */
+  async getSalary(){
+    const { ctx, service } = this;
+    ctx.body = await service.intention.getSalary(ctx.query.grade, ctx.query.academyNum, ctx.query.status);
+  }
 }
 
 module.exports = IntentionController;

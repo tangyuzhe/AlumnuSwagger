@@ -446,5 +446,32 @@ class IntentionService extends Service {
       data: res
     }
   }
+
+  async getSalary(grade, academyNum, status){
+    const {ctx} = this;
+    const res = await ctx.model.Intention.findAll({
+      attributes: [ 'majorId', [Sequelize.fn('AVG',Sequelize.col('salary')),'AVG']],
+      where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: status
+      },
+      group: 'majorId',
+      raw: true,
+      // include: [{
+      //   model: this.app.model.Major,
+      //   as: 'basic',
+      //   required: 'majorId',
+      //   where: {
+      //     id: majorId
+      //   }
+      // }]
+    })
+    return {
+      code: 0,
+      message: '统计成功！',
+      count: res.length,
+      data: res
+    }
+  }
 }
 module.exports = IntentionService;
