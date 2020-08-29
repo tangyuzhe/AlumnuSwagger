@@ -189,7 +189,7 @@ class IntentionService extends Service {
     });
     return {
       code: 0,
-      message: '查询成功！',
+      message: '统计成功！',
       date: res,
     };
   }
@@ -324,7 +324,7 @@ class IntentionService extends Service {
   }
 
   /**
-   * 
+   * 城市分类统计
    * @param {integer} grade 
    * @param {string} academyNum 
    * @param {integer} majorId 
@@ -379,7 +379,69 @@ class IntentionService extends Service {
     }
     return {
       code: 0,
-      message: '查询成功！',
+      message: '统计成功！',
+      count: res.length,
+      data: res
+    }
+  }
+
+  /**
+   * 职业分类统计
+   * @param {integer} grade 
+   * @param {string} academyNum 
+   * @param {integer} majorId 
+   * @param {integer} mark 
+   * @param {integer} order 
+   */
+  async getJob(grade, academyNum, majorId, mark, order){
+    const {ctx} = this;
+    let res;
+    if (majorId == 0) {
+      if (mark == 1) {
+        res = await ctx.model.Intention.findAll({
+          attributes: [ 'intentionality_job1', [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
+          where: {
+          sno: {[Op.like]: grade + academyNum + '%'},
+          status: mark },
+          group: 'intentionality_job1',
+          raw: true,
+          })
+      } else if(mark == 0){
+        res = await ctx.model.Intention.findAll({
+          attributes: [ 'intentionality_job' + order , [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
+          where: {
+          sno: {[Op.like]: grade + academyNum + '%'},
+          status: mark },
+          group: 'intentionality_job' + order,
+          raw: true,
+        })
+      }
+    } else {
+      if (mark == 1) {
+        res = await ctx.model.Intention.findAll({
+          attributes: [ 'intentionality_job1', [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
+          where: {
+          sno: {[Op.like]: grade + academyNum + '%'},
+          majorId: majorId,
+          status: mark },
+          group: 'intentionality_job1',
+          raw: true,
+        })
+      } else if(mark == 0){
+        res = await ctx.model.Intention.findAll({
+          attributes: [ 'intentionality_job' + order , [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
+          where: {
+          sno: {[Op.like]: grade + academyNum + '%'},
+          majorId: majorId,
+          status: mark },
+          group: 'intentionality_job' + order,
+          raw: true,
+        })
+      }
+    }
+    return {
+      code: 0,
+      message: '统计成功！',
       count: res.length,
       data: res
     }
