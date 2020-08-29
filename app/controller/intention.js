@@ -98,6 +98,26 @@ class IntentionController extends Controller {
     const data = await service.intention.queryDownloadData(ctx.request.body);
     ctx.body = await service.intention.download(data,ctx.request.body.filename);
   }
+  
+  /**
+   * @summary 城市分类统计
+   * @description 需要参数：
+   * 年级grade[例如：18] 学院编码academyNum[例如：001-015] 专业id majorId[例如：1，详细参考major表id,输入0为统计全院]
+   * 标志mark[0表示为意向城市，1表示为签约城市统计，输入1意向次序参数失效]
+   * 意向次序order[1-第意向，2-第二意向，3-第三意向]
+   * @router get /api/Intention/city
+   * @request query integer *grade
+   * @request query string *academyNum
+   * @request query integer *majorId
+   * @request query integer *mark
+   * @request query integer *order
+   * @response 200 City 查询成功
+   * @apikey
+   */
+  async getCity(){
+    const { ctx, service } = this;
+    ctx.body = await service.intention.getCity(ctx.query.grade, ctx.query.academyNum, ctx.query.majorId, ctx.query.mark, ctx.query.order);
+  }
 }
 
 module.exports = IntentionController;

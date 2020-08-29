@@ -155,4 +155,8 @@ module.exports = {
     employmentOrientation: { type: 'string', description: '方向' },
     count: { type: 'number', description: '人数' },
   },
+  City: {
+    city: { type: 'string', descirption: '城市名称' },
+    count: { type: 'number', description: '人数' }
+  }
 };

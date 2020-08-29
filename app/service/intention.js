@@ -323,6 +323,66 @@ class IntentionService extends Service {
     ctx.res.end();
   }
 
-
+  /**
+   * 
+   * @param {integer} grade 
+   * @param {string} academyNum 
+   * @param {integer} majorId 
+   * @param {integer} mark 
+   * @param {integer} order 
+   */
+  async getCity(grade, academyNum, majorId, mark, order){
+    const {ctx} = this;
+    let res;
+    if (majorId == 0) {
+      if (mark == 1) {
+        res = await ctx.model.Intention.findAll({
+          attributes: [ 'intentionalityCity1', [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
+          where: {
+          sno: {[Op.like]: grade + academyNum + '%'},
+          status: mark },
+          group: 'intentionalityCity1',
+          raw: true,
+          })
+      } else if(mark == 0){
+        res = await ctx.model.Intention.findAll({
+          attributes: [ 'intentionalityCity' + order , [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
+          where: {
+          sno: {[Op.like]: grade + academyNum + '%'},
+          status: mark },
+          group: 'intentionalityCity' + order,
+          raw: true,
+        })
+      }
+    } else {
+      if (mark == 1) {
+        res = await ctx.model.Intention.findAll({
+          attributes: [ 'intentionalityCity1', [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
+          where: {
+          sno: {[Op.like]: grade + academyNum + '%'},
+          majorId: majorId,
+          status: mark },
+          group: 'intentionalityCity1',
+          raw: true,
+        })
+      } else if(mark == 0){
+        res = await ctx.model.Intention.findAll({
+          attributes: [ 'intentionalityCity' + order , [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
+          where: {
+          sno: {[Op.like]: grade + academyNum + '%'},
+          majorId: majorId,
+          status: mark },
+          group: 'intentionalityCity' + order,
+          raw: true,
+        })
+      }
+    }
+    return {
+      code: 0,
+      message: '查询成功！',
+      count: res.length,
+      data: res
+    }
+  }
 }
 module.exports = IntentionService;
