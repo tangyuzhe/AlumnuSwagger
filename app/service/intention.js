@@ -447,6 +447,12 @@ class IntentionService extends Service {
     }
   }
 
+  /**
+   * 
+   * @param {integer} grade 
+   * @param {string} academyNum 
+   * @param {integer} status 
+   */
   async getSalary(grade, academyNum, status){
     const {ctx} = this;
     const res = await ctx.model.Intention.findAll({
@@ -473,5 +479,111 @@ class IntentionService extends Service {
       data: res
     }
   }
+
+  /**
+   * 
+   * @param {integer} grade 
+   * @param {string} academyNum 
+   * @param {integer} majorId
+   */
+  async getStatistics(grade, academyNum, majorId){
+    const {ctx} = this;
+    let res =new Array(5);
+    if (majorId == 0) {
+      res[0] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'填写意愿总人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 0
+        }
+      })
+      res[1] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'拟考研人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 0,
+        employmentOrientation: '考研'
+        }
+      })
+      res[2] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'拟就业人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 0,
+        employmentOrientation: '就业'
+        }
+      })
+  
+      res[3] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'已考研人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 1,
+        employmentOrientation: '考研'
+        }
+      })
+      res[4] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'已就业人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 1,
+        employmentOrientation: '就业'
+        }
+      })
+    } else {
+      res[0] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'填写意愿总人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 0,
+        majorId: majorId
+        }
+      })
+      res[1] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'拟考研人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 0,
+        employmentOrientation: '考研',
+        majorId: majorId
+        }
+      })
+      res[2] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'拟就业人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 0,
+        employmentOrientation: '就业',
+        majorId: majorId
+        }
+      })
+  
+      res[3] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'已考研人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 1,
+        employmentOrientation: '考研',
+        majorId: majorId
+        }
+      })
+      res[4] = await ctx.model.Intention.findAll({
+        attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'已就业人数']],
+        where: {
+        sno: {[Op.like]: grade + academyNum + '%'},
+        status: 1,
+        employmentOrientation: '就业',
+        majorId: majorId
+        }
+      })
+    }
+    
+    return {
+      code: 0,
+      message: '统计成功！',
+      res
+    }
+  }
 }
+
 module.exports = IntentionService;

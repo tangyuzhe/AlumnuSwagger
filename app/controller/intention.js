@@ -153,6 +153,21 @@ class IntentionController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.intention.getSalary(ctx.query.grade, ctx.query.academyNum, ctx.query.status);
   }
+
+  /**
+   * @summary 统计人数
+   * @description 返回指定学院年级填意向表的总人数、拟考研人数、拟就业人数、已就业人数、已考研人数（status为1为确定，0为意向，根据这个来筛选四个信息的）
+   * //如果要统计整个年级的，学院id输入0即可，否则输入学院id按专业统计
+   * @router get /api/Intention/Statistics
+   * @request query integer *grade
+   * @request query string *academyNum
+   * @request query integer *majorId
+   * @apikey
+   */
+  async getStatistics(){
+    const { ctx, service } = this;
+    ctx.body = await service.intention.getStatistics(ctx.query.grade, ctx.query.academyNum, ctx.query.majorId);
+  }
 }
 
 module.exports = IntentionController;
