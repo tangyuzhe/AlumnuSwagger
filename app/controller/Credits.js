@@ -8,7 +8,7 @@ class CreditsController extends Controller {
  /**
    * @summary 查询学分绩
    * @description 根据学号查询学分绩记录
-   * @router post /api/credits/findCredits
+   * @router get /api/credits/findCredits
    * @request query string *sno
    * @response 200 Credits 增加成功！
    * @apikey

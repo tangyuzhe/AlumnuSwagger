@@ -169,5 +169,13 @@ module.exports = {
     sname: { type: 'string', description: '姓名' },
     major: { type: 'string', description: '专业' },
     credits: { type: 'number', description: '学分绩' },
+  },
+  Resume: {
+    id: { type: 'number', description: 'id' },
+    sno: { type: 'string', description: '学号' },
+    sname: { type: 'string', description: '姓名' },
+    company: { type: 'string', description: '公司名称' },
+    job: { type: 'string', description: '求职工作名称' },
+    sendTime: { type: 'string', description: '简历投出时间' }
   }
 };

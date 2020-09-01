@@ -15,7 +15,7 @@ class CreditsService extends Service {
     }
     });
     if (!res) {
-        ctx.throw(404, { code: 1, message: "没有此学院记录！" })
+        ctx.throw(404, { code: 1, message: "没有记录！" })
     } else{
         return {
             code: 0,
