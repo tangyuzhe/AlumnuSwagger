@@ -162,5 +162,12 @@ module.exports = {
   Salary: {
     major: { type: 'string', descirpition: '专业名称' },
     count: { type: 'string', description: '人数' }
+  },
+  Credits: {
+    id: { type: 'number', description: 'id' },
+    sno: { type: 'string', description: '学号' },
+    sname: { type: 'string', description: '姓名' },
+    major: { type: 'string', description: '专业' },
+    credits: { type: 'number', description: '学分绩' },
   }
 };
