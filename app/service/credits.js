@@ -9,7 +9,7 @@ class CreditsService extends Service {
      */
   async findCredits(sno) {
     const { ctx } = this;
-    const res = await ctx.model.Credits.findOne({
+    const res = await ctx.model.Credits.findAll({
     where: {
         sno: sno
     }
