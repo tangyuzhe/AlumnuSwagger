@@ -3,10 +3,9 @@
 const Service = require('egg').Service;
 
 class CreditsService extends Service {
-    /**
-     * 
-     * @param {string} sno 
-     */
+  /**
+    * @param {string} sno 
+    */
   async findCredits(sno) {
     const { ctx } = this;
     const res = await ctx.model.Credits.findAll({

@@ -20,8 +20,8 @@ class JobController extends Controller {
   }
 
   /**
-   * @summary 根据职业id删除职业记录
-   * @description 根据职业id删除职业记录
+   * @summary 根据id删除职业记录
+   * @description 根据id删除职业记录
    * @router delete /api/job/deleteById
    * @request query integer *id
    * @response 200 Job 删除成功!
@@ -29,8 +29,7 @@ class JobController extends Controller {
    */
   async deleteById() {
     const { ctx, service } = this;
-    const id = ctx.query.id;
-    ctx.body = await service.job.deleteById(id);
+    ctx.body = await service.job.deleteById(ctx.query.id);
   }
 
   /**
@@ -43,8 +42,7 @@ class JobController extends Controller {
    */
   async deleteByAcademy() {
     const { ctx, service } = this;
-    const academy = ctx.query.academy;
-    ctx.body = await service.job.deleteByAcademy(academy);
+    ctx.body = await service.job.deleteByAcademy(ctx.query.academy);
   }
 
   /**
@@ -58,9 +56,7 @@ class JobController extends Controller {
    */
   async updateOne() {
     const { ctx, service } = this;
-    const id = ctx.params.id;
-    const data = ctx.request.body;
-    ctx.body = await service.job.update(id, data);
+    ctx.body = await service.job.update(ctx.params.id, ctx.request.body);
   }
 
   /**
@@ -74,9 +70,7 @@ class JobController extends Controller {
    */
   async findAll() {
     const { ctx, service } = this;
-    const page = ctx.query.page;
-    const pagesize = parseInt(ctx.query.pagesize);
-    ctx.body = await service.job.getJobList(page, pagesize);
+    ctx.body = await service.job.getJobList(ctx.query.page, parseInt(ctx.query.pagesize));
   }
 
   /**
@@ -103,8 +97,7 @@ class JobController extends Controller {
    */
   async findByAcademy() {
     const { ctx, service } = this;
-    const academy = ctx.query.academy;
-    ctx.body = await service.job.findByAcademy(academy);
+    ctx.body = await service.job.findByAcademy(ctx.query.academy);
   }
 }
 

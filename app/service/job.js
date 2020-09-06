@@ -5,78 +5,86 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 class JobService extends Service {
-    /**
-     * 新增职业信息
-     * @param {*} payload 
-     */
-    async createOne(payload) {
-      const { ctx } = this;
-      const res = await ctx.model.Job.create(payload);
+  /**
+   * 新增职业信息
+   * @param {object} payload 
+   */
+  async createOne(payload) {
+    const { ctx } = this;
+    const res = await ctx.model.Job.create(payload);
+    if (res) {
       return {
         code: 0,
         data: res,
         message: "添加成功！"
       }
+    } else {
+      return {
+        code: 1,
+        data: res,
+        message: "添加失败！"
+      }
     }
+  }
 
-    /**
-     * 根据输入id删除职业记录
-     * @param {*} id 
-     */
-    async deleteById(id) {
-      const { ctx } = this;
-      const data = await ctx.model.Job.findOne({
+  /**
+   * 根据输入id删除职业记录
+   * @param {Integer} id 
+   */
+  async deleteById(id) {
+    const { ctx } = this;
+    const data = await ctx.model.Job.findOne({
+      where: {
+        id: id
+      }
+    });
+    if (!data) {
+      ctx.throw(404, { code: 1, message: "没有此职业记录！" })
+    } else {
+      const res = await ctx.model.Job.destroy({
         where: {
           id: id
         }
-      });
-      if (!data) {
-        ctx.throw(404, { code: 1, message: "没有此职业记录！" })
-      } else {
-        const res = await ctx.model.Job.destroy({
-          where: {
-            id: id
-          }
-        })
-        return {
-          code: 0,
-          data: res,
-          message: '删除成功!'
-        }
+      })
+      return {
+        code: 0,
+        data: res,
+        message: '删除成功!'
       }
     }
+  }
 
-    /**
-     * 根据输入academy批量删除职业记录
-     * @param {*} academy 
-     */
-    async deleteByAcademy(academy) {
-      const { ctx } = this;
-      const data = await ctx.model.Job.findOne({
+  /**
+   * 根据输入academy批量删除职业记录
+   * @param {Integer} academy 
+   */
+  async deleteByAcademy(academy) {
+    const { ctx } = this;
+    const data = await ctx.model.Job.findOne({
+      where: {
+        academy: academy
+      }
+    });
+    if (!data) {
+      ctx.throw(404, { code: 1, message: "没有符合条件的职业记录！" })
+    } else {
+      const res = await ctx.model.Job.destroy({
         where: {
           academy: academy
         }
-      });
-      if (!data) {
-        ctx.throw(404, { code: 1, message: "没有符合条件的职业记录！" })
-      } else {
-        const res = await ctx.model.Job.destroy({
-          where: {
-            academy: academy
-          }
-        })
-        return {
-          code: 0,
-          data: res,
-          message: '删除成功!'
-        }
+      })
+      return {
+        code: 0,
+        data: res,
+        message: '删除成功!'
       }
     }
+  }
 
   /**
    * 更新职业记录
-   * @param {*} id 
-   * @param {*} payload 
+   * @param {Integer} id 
+   * @param {object} payload 
    */
   async update(id, payload) {
     const { ctx } = this;
@@ -84,7 +92,7 @@ class JobService extends Service {
       where: {
         id: id
       }
-    })
+    });
     return {
       code: 0,
       data: res,
@@ -94,8 +102,8 @@ class JobService extends Service {
 
   /**
    * 获取职业信息列表
-   * @param {*} page 
-   * @param {*} pagesize 
+   * @param {Integer} page 
+   * @param {Integer} pagesize 
    */
   async getJobList(page, pagesize) {
     const { ctx } = this;
@@ -113,7 +121,7 @@ class JobService extends Service {
     
   /**
    * 根据职业名称模糊查询职业信息
-   * @param {*} name
+   * @param {string} name
    */
   async findByName(name) {
     const { ctx } = this;
@@ -121,7 +129,7 @@ class JobService extends Service {
       where: {
         name: {[Op.like]: '%' + name + '%'}
       }
-    })
+    });
     if (res.length) {
       return {
         code: 0,
@@ -142,7 +150,7 @@ class JobService extends Service {
 
   /**
    * 根据职业所属学院范畴查询职业列表
-   * @param {*} academy
+   * @param {Integer} academy
    */
   async findByAcademy(academy) {
     const { ctx } = this;

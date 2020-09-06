@@ -5,21 +5,29 @@ const Service = require('egg').Service;
 class AcademyService extends Service {
     /**
      * 新增学院记录
-     * @param {*} payload
+     * @param {object} payload
      */
     async createOne(payload) {
         const { ctx } = this;
         const res = await ctx.model.Academy.create(payload);
-        return {
-          code: 0,
-          data: res,
-          message: "添加成功！"
+        if (res) {
+          return {
+            code: 0,
+            data: res,
+            message: "添加成功！"
+          }
+        } else {
+          return {
+            code: 1,
+            data: res,
+            message: "添加失败！"
+          }
         }
     }
 
     /**
-     * 根据id删除学院记录
-     * @param {*} id 
+     * 根据id删除记录
+     * @param {Integer} id 
      */
     async deleteById(id) {
       const { ctx } = this;
@@ -35,7 +43,7 @@ class AcademyService extends Service {
           where: {
             id: id
           }
-        })
+        });
         return {
           code: 0,
           data: res,
@@ -46,8 +54,8 @@ class AcademyService extends Service {
 
   /**
    * 更新学院记录
-   * @param {*} id 
-   * @param {*} payload 
+   * @param {Integer} id 
+   * @param {object} payload 
    */
   async update(id, payload) {
     const { ctx } = this;
@@ -55,18 +63,26 @@ class AcademyService extends Service {
       where: {
         id: id
       }
-    })
-    return {
-      code: 0,
-      data: res,
-      message: '更新成功!'
+    });
+    if (res) {
+      return {
+        code: 0,
+        data: res,
+        message: '更新成功!'
+      }
+    } else {
+      return {
+        code: 1,
+        data: res,
+        message: '更新失败!'
+      }
     }
   }
 
   /**
    * 获取学院信息列表
-   * @param {*} page 
-   * @param {*} pagesize 
+   * @param {Integer} page 
+   * @param {Integer} pagesize 
    */
   async getAcademyList(page, pagesize) {
     const { ctx } = this;

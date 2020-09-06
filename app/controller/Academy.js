@@ -7,7 +7,7 @@ const Controller = require('egg').Controller;
 class AcademyController extends Controller {
   /**
    * @summary 新增学院信息
-   * @description 新增一条学院信息
+   * @description 新增一条学院信息记录
    * @router post /api/academy/create
    * @request body Academy *body 
    * @response 200 Academy 增加成功！
@@ -19,8 +19,8 @@ class AcademyController extends Controller {
   }
 
   /**
-   * @summary 根据学院id删除学院记录
-   * @description 根据学院id删除学院记录
+   * @summary 根据id删除学院记录
+   * @description 根据id删除学院记录
    * @router delete /api/academy/deleteById
    * @request query integer *id
    * @response 200 Academy 删除成功!
@@ -37,14 +37,12 @@ class AcademyController extends Controller {
    * @router put /api/academy/update/{id}
    * @request path integer *id
    * @request body Academy *body
-   * @response 200 Academy 修改成功
+   * @response 200 Academy 修改成功!
    * @apikey
    */
   async updateOne() {
     const { ctx, service } = this;
-    const id = ctx.params.id;
-    const data = ctx.request.body;
-    ctx.body = await service.academy.update(id, data);
+    ctx.body = await service.academy.update(ctx.params.id, ctx.request.body);
   }
 
   /**
@@ -58,9 +56,7 @@ class AcademyController extends Controller {
    */
   async findAll() {
     const { ctx, service } = this;
-    const page = ctx.query.page;
-    const pagesize = parseInt(ctx.query.pagesize);
-    ctx.body = await service.academy.getAcademyList(page, pagesize);
+    ctx.body = await service.academy.getAcademyList(ctx.query.page, parseInt(ctx.query.pagesize));
   }
 }
 

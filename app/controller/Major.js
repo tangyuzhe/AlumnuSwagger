@@ -16,13 +16,12 @@ class MajorController extends Controller {
    */
   async create() {
     const { ctx, service } = this;
-    let data = ctx.request.body;
-    ctx.body = await service.major.createOne(data);
+    ctx.body = await service.major.createOne(ctx.request.body);
   }
 
   /**
-   * @summary 根据专业id删除专业记录
-   * @description 根据专业id删除专业记录
+   * @summary 根据id删除专业记录
+   * @description 根据id删除专业记录
    * @router delete /api/major/deleteById
    * @request query integer *id
    * @response 200 Major 删除成功!
@@ -30,8 +29,7 @@ class MajorController extends Controller {
    */
   async deleteById() {
     const { ctx, service } = this;
-    const id = ctx.query.id;
-    ctx.body = await service.major.deleteById(id);
+    ctx.body = await service.major.deleteById(ctx.query.id);
   }
 
   /**
@@ -44,8 +42,7 @@ class MajorController extends Controller {
    */
   async deleteByAcademy() {
     const { ctx, service } = this;
-    const academy = ctx.query.academy;
-    ctx.body = await service.major.deleteByAcademy(academy);
+    ctx.body = await service.major.deleteByAcademy(ctx.query.academy);
   }
 
   /**
@@ -59,9 +56,7 @@ class MajorController extends Controller {
    */
   async updateOne() {
     const { ctx, service } = this;
-    const id = ctx.params.id;
-    const data = ctx.request.body;
-    ctx.body = await service.major.update(id, data);
+    ctx.body = await service.major.update(ctx.params.id, ctx.request.body);
   }
 
   /**
@@ -75,9 +70,7 @@ class MajorController extends Controller {
    */
   async findAll() {
     const { ctx, service } = this;
-    const page = ctx.query.page;
-    const pagesize = parseInt(ctx.query.pagesize);
-    ctx.body = await service.major.getMajorList(page, pagesize);
+    ctx.body = await service.major.getMajorList(ctx.query.page, parseInt(ctx.query.pagesize));
   }
 
   /**
@@ -90,8 +83,7 @@ class MajorController extends Controller {
    */
   async findByMark() {
     const { ctx, service } = this;
-    const mark = ctx.query.mark;
-    ctx.body = await service.major.findByMark(mark);
+    ctx.body = await service.major.findByMark(ctx.query.mark);
   }
 
   /**
@@ -104,8 +96,7 @@ class MajorController extends Controller {
    */
   async findByAcademy() {
     const { ctx, service } = this;
-    const academy = ctx.query.academy;
-    ctx.body = await service.major.findByAcademy(academy);
+    ctx.body = await service.major.findByAcademy(ctx.query.academy);
   }
 
   /**
