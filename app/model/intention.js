@@ -58,7 +58,7 @@ module.exports = app => {
       allowNull: true
     },
     intentionalityJob1: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(20),
       allowNull: false,
       references: {
         model: 'job',
@@ -66,7 +66,7 @@ module.exports = app => {
       }
     },
     intentionalityJob2: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(20),
       allowNull: true,
       references: {
         model: 'job',
@@ -74,7 +74,7 @@ module.exports = app => {
       }
     },
     intentionalityJob3: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(20),
       allowNull: true,
       references: {
         model: 'job',
