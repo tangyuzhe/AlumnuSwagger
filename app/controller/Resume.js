@@ -10,7 +10,7 @@ class ResumeController extends Controller {
    * @description 根据学号查询投简历记录
    * @router get /api/resume/findResume
    * @request query string *sno
-   * @response 200 Resume 增加成功！
+   * @response 200 Resume 查询成功！
    * @apikey
    */
   async findResume() {

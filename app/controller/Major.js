@@ -100,17 +100,16 @@ class MajorController extends Controller {
   }
 
   /**
-   * @summary 根据专业名称关键字模糊查找专业信息
-   * @description 根据专业名称关键字模糊查找专业信息
-   * @router get /api/major/findByName
-   * @request query string *name
+   * @summary 根据关键字模糊查找专业信息
+   * @description 根据关键字模糊查找专业信息
+   * @router get /api/major/find
+   * @request query string *keyword
    * @response 200 Major 查询成功
    * @apikey
    */
-  async findByName() {
+  async find() {
     const { ctx, service } = this;
-    const name = ctx.query.name;
-    ctx.body = await service.major.findByName(name);
+    ctx.body = await service.major.find(ctx.query.keyword);
   }
 }
 

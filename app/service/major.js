@@ -187,31 +187,30 @@ class MajorService extends Service {
   }
 
   /**
-   * 根据职业名称模糊查询职业信息
-   * @param {string} name
+   * 根据关键字模糊查询职业信息
+   * @param {string} keyword
    */
-  async findByName(name) {
+  async find(keyword) {
     const { ctx } = this;
-    const res = await ctx.model.Major.findAll({
-      where: {
-        name: {[Op.like]: '%' + name + '%'}
-      }
-    });
-    if (res.length) {
-      return {
-        code: 0,
-        data: res,
-        total: res.length,
-        message: "查询成功！"
-      }
-    } else {
-      return {
-        code: 1,
-        data: res,
-        total: res.length,
-        message: "查询失败,不存在符合条件的记录！"
-      }
+    let where;
+    if ((keyword != '' && keyword != null)) {
+      where = {
+        [Op.or]:[
+          { mark: { [Op.like]: '%d' + keyword +'%d' }},
+          { name: { [Op.like]: '%' + keyword + '%' } },
+          { academy: { [Op.like]: '%' + keyword + '%' } },
+          { details: { [Op.like]: '%' + keyword + '%' } },
+        ]
+      };
     }
+    const res = await ctx.model.Major.findAndCountAll({
+      where
+    });
+    return {
+      code: 0,
+      message: '查询成功',
+      data: res,
+    };
   }
 }
 

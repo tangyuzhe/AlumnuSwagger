@@ -74,17 +74,16 @@ class JobController extends Controller {
   }
 
   /**
-   * @summary 根据职业名称关键字模糊查找职业信息
-   * @description 根据职业名称关键字模糊查找职业信息
-   * @router get /api/job/findByName
-   * @request query string *name
+   * @summary 根据关键字等信息模糊查找职业信息
+   * @description 根据关键字等信息模糊查找职业信息
+   * @router get /api/job/find
+   * @request query string *keyword
    * @response 200 Job 查询成功
    * @apikey
    */
-  async findByName() {
+  async find() {
     const { ctx, service } = this;
-    const name = ctx.query.name;
-    ctx.body = await service.job.findByName(name);
+    ctx.body = await service.job.find(ctx.query.keyword);
   }
 
   /**

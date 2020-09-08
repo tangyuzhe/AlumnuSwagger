@@ -8,7 +8,7 @@ const Op = Sequelize.Op;
 class IntentionService extends Service {
   /**
    * 创建问卷
-   * @param {*} intention
+   * @param {object} intention
    */
   async createIntention(intention) {
     const { ctx } = this;
@@ -22,7 +22,7 @@ class IntentionService extends Service {
 
   /**
    * 修改问卷
-   * @param {*} intention
+   * @param {object} intention
    */
   async updateIntention(intention) {
     const { ctx } = this;
@@ -46,7 +46,7 @@ class IntentionService extends Service {
 
   /**
    * 根据学号查询问卷
-   * @param {*} id
+   * @param {integer} id
    */
   async queryBySno(sno) {
     const { ctx } = this;
@@ -73,7 +73,7 @@ class IntentionService extends Service {
 
   /**
    * 根据问卷id删除问卷
-   * @param {*} id
+   * @param {integer} id
    */
   async removeIntention(id) {
     const { ctx } = this;
@@ -98,7 +98,7 @@ class IntentionService extends Service {
 
   /**
    * 查询问卷
-   * @param {*} queryForm
+   * @param {object} queryForm
    */
   async queryByForm(queryForm) {
     const { ctx } = this;
@@ -190,13 +190,13 @@ class IntentionService extends Service {
     return {
       code: 0,
       message: '统计成功！',
-      date: res,
+      data: res,
     };
   }
 
   /**
    * 查询问卷
-   * @param {*} queryForm
+   * @param {object} queryForm
    */
   async queryDownloadData(queryForm) {
     const { ctx } = this;
