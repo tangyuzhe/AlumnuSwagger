@@ -77,7 +77,6 @@ class IntentionController extends Controller {
    * @summary 根据就业意向分类
    * @description 根据就业意向列出每个意向的人数
    * @router get /api/Intention/intention
-   * @response 200 intenCensus 查询成功
    * @apikey
    */
   async getIntention() {
@@ -111,7 +110,6 @@ class IntentionController extends Controller {
    * @request query integer *majorId
    * @request query integer *mark
    * @request query integer *order
-   * @response 200 City 查询成功
    * @apikey
    */
   async getCity(){
@@ -131,7 +129,6 @@ class IntentionController extends Controller {
    * @request query integer *majorId
    * @request query integer *mark
    * @request query integer *order
-   * @response 200 City 查询成功
    * @apikey
    */
   async getJob(){
@@ -146,7 +143,6 @@ class IntentionController extends Controller {
    * @request query integer *grade
    * @request query string *academyNum
    * @request query integer *status
-   * @response 200 Salary 查询成功
    * @apikey
    */
   async getSalary(){

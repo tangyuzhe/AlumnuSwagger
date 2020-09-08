@@ -151,18 +151,6 @@ module.exports = {
     page: { type: 'number', description: '页数' },
     filename: { type: 'string', description: '文件名称' },
   },
-  intenCensus: {
-    employmentOrientation: { type: 'string', description: '方向' },
-    count: { type: 'number', description: '人数' },
-  },
-  City: {
-    city: { type: 'string', descirption: '城市名称' },
-    count: { type: 'number', description: '人数' }
-  },
-  Salary: {
-    major: { type: 'string', descirpition: '专业名称' },
-    count: { type: 'string', description: '人数' }
-  },
   Credits: {
     id: { type: 'number', description: 'id' },
     sno: { type: 'string', description: '学号' },
