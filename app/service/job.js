@@ -143,7 +143,6 @@ class JobService extends Service {
       message: '查询成功',
       data: res,
     };
-    }
   }
 
   /**
