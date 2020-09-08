@@ -10,9 +10,9 @@ class ResumeService extends Service {
   async findResume(sno) {
     const { ctx } = this;
     const res = await ctx.model.Resume.findAll({
-    where: {
+      where: {
         sno: sno
-    }
+      }
     });
     if (!res) {
         ctx.throw(404, { code: 1, message: "没有记录！" })
