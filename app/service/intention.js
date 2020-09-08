@@ -587,9 +587,27 @@ class IntentionService extends Service {
       res3,
       res4,
       res5
-      
     }
   }
+
+  /**
+   * 获取最新更细时间
+   */
+  async getTime(){
+    const {ctx} = this;
+    const time = JSON.stringify(await ctx.model.Intention.findAll({
+      attributes:[[Sequelize.fn('Max',Sequelize.col('updated_at')),'time']]
+    }));
+    return {
+      code: 0,
+      message: '查找成功',
+      time: time,
+      year: time.substring(10,14),
+      month: time.substring(15,17),
+      date: time.substring(18,20)
+    }
+  }
+  
 }
 
 module.exports = IntentionService;

@@ -23,7 +23,7 @@ class IntentionController extends Controller {
   /**
    * @summary 更新就业问卷
    * @description 记录毕业生就业情况
-   * @router put /api/Intention/updateIntention
+   * @router post /api/Intention/updateIntention
    * @request body intention *body
    * @response 200 intention 更新成功
    * @apikey
@@ -163,6 +163,17 @@ class IntentionController extends Controller {
   async getStatistics(){
     const { ctx, service } = this;
     ctx.body = await service.intention.getStatistics(ctx.query.grade, ctx.query.academyNum, ctx.query.majorId);
+  }
+
+  /**
+   *@summary 获取最新更新时间
+   *@description 获取最新的更新时间
+   *@router get /api/Intention/getTime
+   *@apikey 
+   */
+  async getTime(){
+    const { ctx, service } = this;
+    ctx.body = await service.intention.getTime();
   }
 }
 
