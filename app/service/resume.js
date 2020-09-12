@@ -10,6 +10,7 @@ class ResumeService extends Service {
   async findResume(sno) {
     const { ctx } = this;
     const res = await ctx.model.Resume.findAll({
+      attributes: [ 'sno','sname',['company','company1'],'job','sendTime'],
       where: {
         sno: sno
       }

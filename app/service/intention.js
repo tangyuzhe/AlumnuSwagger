@@ -608,6 +608,21 @@ class IntentionService extends Service {
     }
   }
   
+  async findByStatus(status){
+    const {ctx} = this;
+    const res = await ctx.model.Intention.findAll({
+      where: {
+        status: status
+      }
+    })
+
+    return {
+      code: 0,
+      count: res.length,
+      message: '查找成功',
+      data: res
+    }
+  }
 }
 
 module.exports = IntentionService;

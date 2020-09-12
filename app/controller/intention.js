@@ -175,6 +175,18 @@ class IntentionController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.intention.getTime();
   }
+
+  /**
+   * @summary 根据status筛选
+   * @description 筛选
+   * @router get /api/Intention/findByStatue
+   * @request query integer *status
+   * @apikey
+   */
+  async findByStaus(){
+    const { ctx, service } = this;
+    ctx.body = await service.intention.findByStatus(ctx.query.status);
+  }
 }
 
 module.exports = IntentionController;
