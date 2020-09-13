@@ -110,7 +110,7 @@ module.exports = app => {
       allowNull: true
     },
     createdAt: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       allowNull: true
     },
     updatedAt: {
