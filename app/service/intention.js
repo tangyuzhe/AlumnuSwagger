@@ -61,11 +61,23 @@ class IntentionService extends Service {
         message: '查询失败',
       };
     }
+    const credit = await ctx.model.Credits.findAll({
+      where: {
+        sno: sno
+      }
+    });
 
+    const resume = await ctx.model.Resume.findAll({
+      where: {
+        sno: sno
+      }
+    });
     return {
       code: 0,
       message: '查询成功',
       data: res,
+      credit: credit,
+      resume: resume
     };
 
   }
@@ -119,14 +131,14 @@ class IntentionService extends Service {
           { failedCourses: { [Op.like]: '%' + queryForm.keyword + '%' } }],
       };
     }
-    if (queryForm.academyId != '' && queryForm.academyId != null) {
-      where.academy_id = queryForm.academyId;
+    if (queryForm.academy != '' && queryForm.academy != null) {
+      where.academy = queryForm.academy;
     }
     if (queryForm.educationBackground != '' && queryForm.educationBackground != null) {
       where.education_background = queryForm.educationBackground;
     }
-    if (queryForm.majorId != '' && queryForm.majorId != null) {
-      where.major_id = queryForm.majorId;
+    if (queryForm.major != '' && queryForm.major != null) {
+      where.major = queryForm.major;
     }
     let array = Object.getOwnPropertySymbols(where);
     if (queryForm.intentionalityCity != '' && queryForm.intentionalityCity != null) {
@@ -217,14 +229,14 @@ class IntentionService extends Service {
           { failedCourses: { [Op.like]: '%' + queryForm.keyword + '%' } }],
       };
     }
-    if (queryForm.academyId != '' && queryForm.academyId != null) {
-      where.academy_id = queryForm.academyId;
+    if (queryForm.academy != '' && queryForm.academy != null) {
+      where.academy = queryForm.academy;
     }
     if (queryForm.educationBackground != '' && queryForm.educationBackground != null) {
       where.education_background = queryForm.educationBackground;
     }
-    if (queryForm.majorId != '' && queryForm.majorId != null) {
-      where.major_id = queryForm.majorId;
+    if (queryForm.major != '' && queryForm.major != null) {
+      where.major = queryForm.major;
     }
     let array = Object.getOwnPropertySymbols(where);
     if (queryForm.intentionalityCity != '' && queryForm.intentionalityCity != null) {
@@ -277,9 +289,9 @@ class IntentionService extends Service {
     sheet.columns = [
       { header: '学号', key: 'sno', width: 15 },
       { header: '姓名', key: 'sname', width: 15 },
-      { header: '学院', key: 'academyId', width: 15 },
+      { header: '学院', key: 'academy', width: 15 },
       { header: '学历', key: 'educationBackground', width: 15 },
-      { header: '专业', key: 'majorId', width: 15 },
+      { header: '专业', key: 'major', width: 15 },
       { header: '当前状态', key: 'status', width: 15 },
       { header: '意向', key: 'employmentOrientation', width: 15 },
       { header: '意向城市1', key: 'intentionalityCity1', width: 15 },
@@ -298,11 +310,11 @@ class IntentionService extends Service {
     ];
     for (let item of data.data.rows) {
       for (let A of Academy) {
-        if (A.id === item.academyId) { item.academyId = A.name; }
+        if (A.id === item.academy) { item.academy = A.name; }
       }
       for (let M of Major) {
-        if (M.id === item.majorId) {
-          item.majorId = M.name;
+        if (M.id === item.major) {
+          item.major = M.name;
         }
       }
       if (item.educationBackground === 0) {
@@ -327,14 +339,14 @@ class IntentionService extends Service {
    * 城市分类统计
    * @param {integer} grade 
    * @param {string} academyNum 
-   * @param {integer} majorId 
+   * @param {string} major
    * @param {integer} mark 
    * @param {integer} order 
    */
-  async getCity(grade, academyNum, majorId, mark, order){
+  async getCity(grade, academyNum, major, mark, order){
     const {ctx} = this;
     let res;
-    if (majorId == 0) {
+    if (major == 0) {
       if (mark == 1) {
         res = await ctx.model.Intention.findAll({
           attributes: [ 'intentionalityCity1', [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
@@ -360,7 +372,7 @@ class IntentionService extends Service {
           attributes: [ 'intentionalityCity1', [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
           where: {
           sno: {[Op.like]: grade + academyNum + '%'},
-          majorId: majorId,
+          major: major,
           status: mark },
           group: 'intentionalityCity1',
           raw: true,
@@ -370,7 +382,7 @@ class IntentionService extends Service {
           attributes: [ 'intentionalityCity' + order , [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
           where: {
           sno: {[Op.like]: grade + academyNum + '%'},
-          majorId: majorId,
+          major: major,
           status: mark },
           group: 'intentionalityCity' + order,
           raw: true,
@@ -389,14 +401,14 @@ class IntentionService extends Service {
    * 职业分类统计
    * @param {integer} grade 
    * @param {string} academyNum 
-   * @param {integer} majorId 
+   * @param {string} major
    * @param {integer} mark 
    * @param {integer} order 
    */
-  async getJob(grade, academyNum, majorId, mark, order){
+  async getJob(grade, academyNum, major, mark, order){
     const {ctx} = this;
     let res;
-    if (majorId == 0) {
+    if (major == 0) {
       if (mark == 1) {
         res = await ctx.model.Intention.findAll({
           attributes: [ 'intentionality_job1', [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
@@ -422,7 +434,7 @@ class IntentionService extends Service {
           attributes: [ 'intentionality_job1', [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
           where: {
           sno: {[Op.like]: grade + academyNum + '%'},
-          majorId: majorId,
+          major: major,
           status: mark },
           group: 'intentionality_job1',
           raw: true,
@@ -432,7 +444,7 @@ class IntentionService extends Service {
           attributes: [ 'intentionality_job' + order , [Sequelize.fn('COUNT',Sequelize.col('*')),'count']],
           where: {
           sno: {[Op.like]: grade + academyNum + '%'},
-          majorId: majorId,
+          major: major,
           status: mark },
           group: 'intentionality_job' + order,
           raw: true,
@@ -484,13 +496,13 @@ class IntentionService extends Service {
    * 
    * @param {integer} grade 
    * @param {string} academyNum 
-   * @param {integer} majorId
+   * @param {string} major
    */
-  async getStatistics(grade, academyNum, majorId){
+  async getStatistics(grade, academyNum, major){
     const {ctx} = this;
     let res =new Array(5);
     let res1,res2,res3,res4,res5;
-    if (majorId == 0) {
+    if (major == 0) {
       res1 = await ctx.model.Intention.findAll({
         attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'填写意愿总人数']],
         where: {
@@ -537,7 +549,7 @@ class IntentionService extends Service {
         where: {
         sno: {[Op.like]: grade + academyNum + '%'},
         status: 0,
-        majorId: majorId
+        major: major
         }
       })
       res2 = await ctx.model.Intention.findAll({
@@ -546,7 +558,7 @@ class IntentionService extends Service {
         sno: {[Op.like]: grade + academyNum + '%'},
         status: 0,
         employmentOrientation: '考研',
-        majorId: majorId
+        major: major
         }
       })
       res3 = await ctx.model.Intention.findAll({
@@ -555,7 +567,7 @@ class IntentionService extends Service {
         sno: {[Op.like]: grade + academyNum + '%'},
         status: 0,
         employmentOrientation: '就业',
-        majorId: majorId
+        major: major
         }
       })
   
@@ -565,7 +577,7 @@ class IntentionService extends Service {
         sno: {[Op.like]: grade + academyNum + '%'},
         status: 1,
         employmentOrientation: '考研',
-        majorId: majorId
+        major: major
         }
       })
       res5 = await ctx.model.Intention.findAll({
@@ -574,7 +586,7 @@ class IntentionService extends Service {
         sno: {[Op.like]: grade + academyNum + '%'},
         status: 1,
         employmentOrientation: '就业',
-        majorId: majorId
+        major: major
         }
       })
     }

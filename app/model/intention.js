@@ -17,25 +17,17 @@ module.exports = app => {
       type: DataTypes.STRING(20),
       allowNull: false
     },
-    academyId: {
-      type: DataTypes.INTEGER,
+    academy: {
+      type: DataTypes.STRING(20),
       allowNull: false,
-      references: {
-        model: 'academy',
-        key: 'id'
-      }
     },
     educationBackground: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    majorId: {
-      type: DataTypes.INTEGER,
+    major: {
+      type: DataTypes.STRING(20),
       allowNull: false,
-      references: {
-        model: 'major',
-        key: 'id'
-      }
     },
     status: {
       type: DataTypes.INTEGER,

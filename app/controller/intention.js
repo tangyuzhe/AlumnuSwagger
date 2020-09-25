@@ -101,39 +101,39 @@ class IntentionController extends Controller {
   /**
    * @summary 城市分类统计
    * @description 需要参数：
-   * 年级grade[例如：18] 学院编码academyNum[例如：001-015] 专业id majorId[例如：1，详细参考major表id,输入0为统计全院]
+   * 年级grade[例如：18] 学院编码academyNum[例如：001-015] 专业 major[例如：软件工程，详细参考major表,输入0为统计全院]
    * 标志mark[0表示为意向城市，1表示为签约城市统计，输入1意向次序参数失效]
    * 意向次序order[1-第意向，2-第二意向，3-第三意向]
    * @router get /api/Intention/city
    * @request query integer *grade
    * @request query string *academyNum
-   * @request query integer *majorId
+   * @request query string *major
    * @request query integer *mark
    * @request query integer *order
    * @apikey
    */
   async getCity(){
     const { ctx, service } = this;
-    ctx.body = await service.intention.getCity(ctx.query.grade, ctx.query.academyNum, ctx.query.majorId, ctx.query.mark, ctx.query.order);
+    ctx.body = await service.intention.getCity(ctx.query.grade, ctx.query.academyNum, ctx.query.major, ctx.query.mark, ctx.query.order);
   }
 
   /**
    * @summary 职业分类统计
    * @description 需要参数：
-   * 年级grade[例如：18] 学院编码academyNum[例如：001-015] 专业id majorId[例如：1，详细参考major表id,输入0为统计全院]
+   * 年级grade[例如：18] 学院编码academyNum[例如：001-015] 专业 major[例如：软件工程，详细参考major表,输入0为统计全院]
    * 标志mark[0表示为意向职业，1表示为签约职业统计，输入1意向次序参数失效]
    * 意向次序order[1-第意向，2-第二意向，3-第三意向]
    * @router get /api/Intention/job
    * @request query integer *grade
    * @request query string *academyNum
-   * @request query integer *majorId
+   * @request query string *major
    * @request query integer *mark
    * @request query integer *order
    * @apikey
    */
   async getJob(){
     const { ctx, service } = this;
-    ctx.body = await service.intention.getJob(ctx.query.grade, ctx.query.academyNum, ctx.query.majorId, ctx.query.mark, ctx.query.order);
+    ctx.body = await service.intention.getJob(ctx.query.grade, ctx.query.academyNum, ctx.query.major, ctx.query.mark, ctx.query.order);
   }
 
   /**
@@ -153,16 +153,16 @@ class IntentionController extends Controller {
   /**
    * @summary 统计人数
    * @description 返回指定学院年级填意向表的总人数、拟考研人数、拟就业人数、已就业人数、已考研人数（status为1为确定，0为意向，根据这个来筛选四个信息的）
-   * //如果要统计整个年级的，学院id输入0即可，否则输入学院id按专业统计
+   * //如果要统计整个年级的，学院输入0即可，否则输入学院按专业统计
    * @router get /api/Intention/Statistics
    * @request query integer *grade
    * @request query string *academyNum
-   * @request query integer *majorId
+   * @request query string *major
    * @apikey
    */
   async getStatistics(){
     const { ctx, service } = this;
-    ctx.body = await service.intention.getStatistics(ctx.query.grade, ctx.query.academyNum, ctx.query.majorId);
+    ctx.body = await service.intention.getStatistics(ctx.query.grade, ctx.query.academyNum, ctx.query.major);
   }
 
   /**
