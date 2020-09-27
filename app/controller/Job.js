@@ -33,10 +33,10 @@ class JobController extends Controller {
   }
 
   /**
-   * @summary 根据学院id批量删除职业记录
-   * @description 根据学院id批量删除职业记录
+   * @summary 根据学院批量删除职业记录
+   * @description 根据学院批量删除职业记录
    * @router delete /api/job/deleteByAcademy
-   * @request query integer *academy
+   * @request query string *academy
    * @response 200 Job 删除成功!
    * @apikey
    */
@@ -87,10 +87,10 @@ class JobController extends Controller {
   }
 
   /**
-   * @summary 根据学院id获取职业列表
-   * @description 根据学院id获取职业列表
+   * @summary 根据学院获取职业列表
+   * @description 根据学院获取职业列表
    * @router get /api/job/findByAcademy
-   * @request query integer *academy
+   * @request query string *academy
    * @response 200 Job 查询成功
    * @apikey
    */

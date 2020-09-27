@@ -121,7 +121,7 @@ module.exports = {
   Job: {
     id: { type: 'number', description: '职位ID' },
     name: { type: 'string', description: '职位名称' },
-    academy: { type: 'number', description: '所属学院ID' },
+    academy: { type: 'string', description: '所属学院' },
     details: { type: 'string', description: '详细描述' },
   },
   Academy: {

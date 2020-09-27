@@ -28,7 +28,7 @@ class JobService extends Service {
   }
 
   /**
-   * 根据输入id删除职业记录
+   * 根据id删除职业记录
    * @param {Integer} id 
    */
   async deleteById(id) {
@@ -56,7 +56,7 @@ class JobService extends Service {
 
   /**
    * 根据输入academy批量删除职业记录
-   * @param {Integer} academy 
+   * @param {string} academy 
    */
   async deleteByAcademy(academy) {
     const { ctx } = this;
@@ -147,7 +147,7 @@ class JobService extends Service {
 
   /**
    * 根据职业所属学院范畴查询职业列表
-   * @param {Integer} academy
+   * @param {string} academy
    */
   async findByAcademy(academy) {
     const { ctx } = this;

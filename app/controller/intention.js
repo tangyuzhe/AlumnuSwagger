@@ -186,7 +186,27 @@ class IntentionController extends Controller {
   async findByStaus(){
     const { ctx, service } = this;
     ctx.body = await service.intention.findByStatus(ctx.query.status);
+
+  }
+
+  /**
+   * @summary 城市、职业筛选接口
+   * @description 筛选出第一志愿，第二志愿，第三志愿的某个职业和某个城市的学号和姓名,其中academy、major、grade不输入默认统计全部
+   * @router get /api/Intention/CityFind
+   * @request string *academy
+   * @request string *major
+   * @request integer *grade
+   * @request integer *mark
+   * @request string *keyword
+   * @request 
+   * @apikey
+   */
+  async CityFind(){
+    const { ctx, service } = this;
+    ctx.body = await service.intention.CityFind(ctx.query.academy, ctx.body.major, ctx.body.grade, ctx.body.mark, ctx.body.keyword);
   }
 }
+
+
 
 module.exports = IntentionController;

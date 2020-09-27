@@ -12,12 +12,8 @@ module.exports = app => {
           allowNull: false,
       },
       academy: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING(20),
           allowNull: false,
-          references: {
-            model: 'academy',
-            key: 'id',
-          },
       },
       details: {
           type: DataTypes.STRING(1024),
