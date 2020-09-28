@@ -635,6 +635,1109 @@ class IntentionService extends Service {
       data: res
     }
   }
+/**
+ * @param {integer} status
+ * @param {string} academy 
+ * @param {string} major 
+ * @param {integer} grade 
+ * @param {integer} sign 
+ * @param {string} keyword 
+ */
+  async CityFind(status, academy, major, grade, sign, keyword){
+    const {ctx} = this;
+    let data;
+    if (status == 0) {    //意愿
+      if (academy == 0) {   //学院无限制
+        if (major == 0) {   //专业无限制
+          if (grade == 0) {   //年级无限制
+            switch(sign){   //查找内容
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          } else {    //年级限制
+            switch(sign){
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          }
+        } else {    //专业限制
+          if (grade == 0) {   //年级无限制
+            switch(sign){   //查找内容
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          } else {    //年级限制
+            switch(sign){
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          }
+        }
+      } else {    //学院限制
+        if (major == 0) {   //专业无限制
+          if (grade == 0) {   //年级无限制
+            switch(sign){   //查找内容
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          } else {    //年级限制
+            switch(sign){
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          }
+        } else {    //专业限制
+          if (grade == 0) {   //年级无限制
+            switch(sign){   //查找内容
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          } else {    //年级限制
+            switch(sign){
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    academy: academy,
+                    major: major,
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          }
+        }
+      }
+    } else { 既定
+      if (academy == 0) {   //学院无限制
+        if (major == 0) {   //专业无限制
+          if (grade == 0) {   //年级无限制
+            switch(sign){   //查找内容
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    status: 1
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          } else {    //年级限制
+            switch(sign){
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          }
+        } else {    //专业限制
+          if (grade == 0) {   //年级无限制
+            switch(sign){   //查找内容
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          } else {    //年级限制
+            switch(sign){
+              case '1':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '2':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '3':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '4':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '5':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+              case '6':{
+                data = await ctx.model.Intention.findAll({
+                  attributes: ['sno', 'sname'],
+                  where: {
+                    major: major,
+                    intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                    sno: {[Op.like]: grade + '%' },
+                    status: 0
+                  }
+                })
+              }break;
+            }
+          }
+        }
+      } else {    //学院限制
+        if (major == 0) {   //专业无限制
+            if (grade == 0) {   //年级无限制
+              switch(sign){   //查找内容
+                case '1':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '2':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '3':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '4':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '5':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '6':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+              }
+            } else {    //年级限制
+              switch(sign){
+                case '1':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '2':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '3':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '4':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '5':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '6':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+              }
+            }
+          } else {    //专业限制
+            if (grade == 0) {   //年级无限制
+              switch(sign){   //查找内容
+                case '1':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '2':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '3':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '4':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '5':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+                case '6':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                      status: 1
+                    }
+                  })
+                }break;
+              }
+            } else {    //年级限制
+              switch(sign){
+                case '1':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityCity1: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '2':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityCity2: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '3':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityCity3: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '4':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityJob1: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '5':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityJob2: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+                case '6':{
+                  data = await ctx.model.Intention.findAll({
+                    attributes: ['sno', 'sname'],
+                    where: {
+                      academy: academy,
+                      major: major,
+                      intentionalityJob3: {[Op.like]: '%' + keyword + '%'},
+                      sno: {[Op.like]: grade + '%' },
+                      status: 1
+                    }
+                  })
+                }break;
+              }
+            }
+          }
+      }
+    }
+    return {
+      code: 0,
+      count: data.length,
+      message: '查找成功',
+      data: data
+    }
+  }
 }
 
 module.exports = IntentionService;

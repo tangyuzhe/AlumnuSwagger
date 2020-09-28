@@ -192,18 +192,20 @@ class IntentionController extends Controller {
   /**
    * @summary 城市、职业筛选接口
    * @description 筛选出第一志愿，第二志愿，第三志愿的某个职业和某个城市的学号和姓名,其中academy、major、grade不输入默认统计全部
+   * status=0意向，status=1就业 学院、专业输入为中文名称 sign=1第一意向城市 sign=2第二意向城市 sign=3第三意向城市 
+   * sign=4第一意向职业 sign=5第二意向职业 sign=6第三意向职业
    * @router get /api/Intention/CityFind
-   * @request string *academy
-   * @request string *major
-   * @request integer *grade
-   * @request integer *mark
-   * @request string *keyword
-   * @request 
+   * @request query integer *status
+   * @request query string *academy
+   * @request query string *major
+   * @request query integer *grade
+   * @request query integer *sign
+   * @request query string *keyword
    * @apikey
    */
   async CityFind(){
     const { ctx, service } = this;
-    ctx.body = await service.intention.CityFind(ctx.query.academy, ctx.body.major, ctx.body.grade, ctx.body.mark, ctx.body.keyword);
+    ctx.body = await service.intention.CityFind(ctx.query.status, ctx.query.academy, ctx.query.major, ctx.query.grade, ctx.query.sign, ctx.query.keyword);
   }
 }
 

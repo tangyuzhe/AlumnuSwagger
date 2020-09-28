@@ -165,5 +165,13 @@ module.exports = {
     company: { type: 'string', description: '公司名称' },
     job: { type: 'string', description: '求职工作名称' },
     sendTime: { type: 'string', description: '简历投出时间' }
+  },
+  CityFind:{
+    mark: { type: 'number', description: '状态标志' },
+    academy: { type: 'string', description: '学院名称' },
+    major: { type: 'string', description: '专业名称' },
+    grade: { type: 'number', description: '年级' },
+    sign: { type: 'number', description: '选择标志' },
+    keyword: { type: 'string', description: '关键词' }
   }
 };
