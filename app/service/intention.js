@@ -182,10 +182,14 @@ class IntentionService extends Service {
       offset: start,
       limit: Number(queryForm.pageSize),
     });
+    const count = await ctx.model.Intention.findAll({
+      attributes: [[Sequelize.fn('COUNT',Sequelize.col('*')),'count']]
+    })
     return {
       code: 0,
       message: '查询成功',
       data: res,
+      count: count
     };
   }
 
