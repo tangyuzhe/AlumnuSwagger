@@ -156,25 +156,37 @@ class IntentionService extends Service {
     } else if (queryForm.sort === 1) {
       order.push(['created_at']);
     }
-    if (queryForm.mixSalary == '' || queryForm.mixSalary == null) {
-      queryForm.mixSalary = 0;
+    // if (queryForm.mixSalary == '' || queryForm.mixSalary == null) {
+    //   queryForm.mixSalary = 0;
+    // }
+    // if (queryForm.maxSalary == '' || queryForm.maxSalary == null) {
+    //   queryForm.maxSalary = 9999999999;
+    // }
+    if ((queryForm.mixSalary == '' || queryForm.mixSalary == null)&&(queryForm.maxSalary == '' || queryForm.maxSalary == null)) {
+      // where.salary = {};
+    } else if((queryForm.mixSalary != '' && queryForm.mixSalary != null)&&(queryForm.maxSalary == '' || queryForm.maxSalary == null)){
+      where.salary = {
+        [Op.gte]: queryForm.mixSalary
+      };
+    } else if((queryForm.mixSalary == '' || queryForm.mixSalary == null)&&(queryForm.maxSalary != '' && queryForm.maxSalary != null)){
+      where.salary = {
+        [Op.lte]: queryForm.maxSalary
+      };
+    } else if((queryForm.mixSalary != '' && queryForm.mixSalary != null)&&(queryForm.maxSalary != '' && queryForm.maxSalary != null)){
+      where.salary = {
+        [Op.and]: [
+          { [Op.gte]: queryForm.mixSalary },
+          { [Op.lte]: queryForm.maxSalary },
+        ]
+      };
     }
-    if (queryForm.maxSalary == '' || queryForm.maxSalary == null) {
-      queryForm.maxSalary = 9999999999;
-    }
-    where.salary = {
-      [Op.and]: [
-        { [Op.gte]: queryForm.mixSalary },
-        { [Op.lte]: queryForm.maxSalary },
-      ],
-    };
     if (queryForm.page == '' || queryForm.page == null) {
       queryForm.page = 1;
     }
     if (queryForm.pageSize == '' || queryForm.pageSize == null) {
       queryForm.pageSize = 10;
     }
-    console.log(where);
+    // console.log(where);
     const start = (queryForm.page - 1) * queryForm.pageSize;
     const res = await ctx.model.Intention.findAndCountAll({
       where,
@@ -187,9 +199,9 @@ class IntentionService extends Service {
     })
     return {
       code: 0,
+      countAll: count,
       message: '查询成功',
       data: res,
-      count: count
     };
   }
 
