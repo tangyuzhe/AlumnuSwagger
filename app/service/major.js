@@ -56,7 +56,7 @@ class MajorService extends Service {
 
   /**
    * 根据输入academy批量删除专业记录
-   * @param {integer} academy 
+   * @param {string} academy 
    */
   async deleteByAcademy(academy) {
     const { ctx } = this;
@@ -159,7 +159,7 @@ class MajorService extends Service {
 
   /**
    * 根据学院id获取专业信息列表
-   * @param {integer} academy
+   * @param {string} academy
    */
   async findByAcademy(academy) {
     const { ctx } = this;

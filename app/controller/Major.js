@@ -33,10 +33,10 @@ class MajorController extends Controller {
   }
 
   /**
-   * @summary 根据学院id批量删除专业记录
-   * @description 根据学院id批量删除专业记录
+   * @summary 根据学院批量删除专业记录
+   * @description 根据学院批量删除专业记录
    * @router delete /api/major/deleteByAcademy
-   * @request query integer *academy
+   * @request query string *academy
    * @response 200 Major 删除成功!
    * @apikey
    */
@@ -87,10 +87,10 @@ class MajorController extends Controller {
   }
 
   /**
-   * @summary 根据学院id获取专业信息列表
-   * @description 根据学院id获取专业信息列表
+   * @summary 根据学院获取专业信息列表
+   * @description 根据学院获取专业信息列表
    * @router get /api/major/findByAcademy
-   * @request query integer *academy
+   * @request query string *academy
    * @response 200 Academy 查询成功
    * @apikey
    */
