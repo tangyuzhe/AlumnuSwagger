@@ -120,9 +120,16 @@ class IntentionService extends Service {
       where = {
         [Op.or]: [{ sno: { [Op.like]: '%' + queryForm.keyword + '%' } },
           { sname: { [Op.like]: '%' + queryForm.keyword + '%' } },
+          { academy: { [Op.like]: '%' + queryForm.keyword + '%' } },
+          { major: { [Op.like]: '%' + queryForm.keyword + '%' } },
+          { employment_orientation: { [Op.like]: '%' + queryForm.keyword + '%' } },
+          { education_background: { [Op.like]: '%' + queryForm.keyword + '%' } },
           { intentionality_city1: { [Op.like]: '%' + queryForm.keyword + '%' } },
           { intentionality_city2: { [Op.like]: '%' + queryForm.keyword + '%' } },
           { intentionality_city3: { [Op.like]: '%' + queryForm.keyword + '%' } },
+          { intentionality_job1: { [Op.like]: '%' + queryForm.keyword + '%' } },
+          { intentionality_job2: { [Op.like]: '%' + queryForm.keyword + '%' } },
+          { intentionality_job3: { [Op.like]: '%' + queryForm.keyword + '%' } },
           { phone: { [Op.like]: '%' + queryForm.keyword + '%' } },
           { qq: { [Op.like]: '%' + queryForm.keyword + '%' } },
           { skill: { [Op.like]: '%' + queryForm.keyword + '%' } },
@@ -132,24 +139,41 @@ class IntentionService extends Service {
       };
     }
     if (queryForm.academy != '' && queryForm.academy != null) {
-      where.academy = queryForm.academy;
+      where.academy = { [Op.like]: '%' + queryForm.academy + '%' };
     }
     if (queryForm.educationBackground != '' && queryForm.educationBackground != null) {
-      where.education_background = queryForm.educationBackground;
+      where.education_background = { [Op.like]: '%' + queryForm.educationBackground + '%' };
     }
     if (queryForm.major != '' && queryForm.major != null) {
-      where.major = queryForm.major;
+      where.major = { [Op.like]: '%' + queryForm.major + '%' };
+    }
+    if (queryForm.employmentOrientation != '' && queryForm.employmentOrientation != null) {
+      where.employment_orientation = { [Op.like]: '%' + queryForm.employmentOrientation + '%' };
     }
     let array = Object.getOwnPropertySymbols(where);
-    if (queryForm.intentionalityCity != '' && queryForm.intentionalityCity != null) {
-      where[array[0]].push({ intentionality_city1: { [Op.like]: '%' + queryForm.intentionalityCity + '%' } });
-      where[array[0]].push({ intentionality_city2: { [Op.like]: '%' + queryForm.intentionalityCity + '%' } });
-      where[array[0]].push({ intentionality_city3: { [Op.like]: '%' + queryForm.intentionalityCity + '%' } });
+    if (queryForm.intentionalityCity1 != '' && queryForm.intentionalityCity1 != null) {
+      where.intentionality_city1 = { [Op.like]: '%' + queryForm.intentionalityCity1 + '%' };
+      // where[array[0]].push({ intentionality_city2: { [Op.like]: '%' + queryForm.intentionalityCity + '%' } });
+      // where[array[0]].push({ intentionality_city3: { [Op.like]: '%' + queryForm.intentionalityCity + '%' } });
     }
-    if (queryForm.intentionalityJob != '' && queryForm.intentionalityJob != null) {
-      where[array[0]].push({ intentionality_job1: { [Op.like]: '%' + queryForm.intentionalityJob + '%' } });
-      where[array[0]].push({ intentionality_job2: { [Op.like]: '%' + queryForm.intentionalityJob + '%' } });
-      where[array[0]].push({ intentionality_job3: { [Op.like]: '%' + queryForm.intentionalityJob + '%' } });
+    if (queryForm.intentionalityCity2 != '' && queryForm.intentionalityCity2 != null) {
+      // where[array[0]].push({ intentionality_city2: { [Op.like]: '%' + queryForm.intentionalityCity2 + '%' } });
+      where.intentionality_city2 = { [Op.like]: '%' + queryForm.intentionalityCity2 + '%' };
+    }
+    if (queryForm.intentionalityCity3 != '' && queryForm.intentionalityCity3 != null) {
+      where.intentionality_city3 = { [Op.like]: '%' + queryForm.intentionalityCity3 + '%' };
+      // where[array[0]].push({ intentionality_city3: { [Op.like]: '%' + queryForm.intentionalityCity3 + '%' } });
+    }
+    if (queryForm.intentionalityJob1 != '' && queryForm.intentionalityJob1 != null) {
+      where.intentionality_job1 = { [Op.like]: '%' + queryForm.intentionalityJob1 + '%' };
+      // where[array[0]].push({ intentionality_job2: { [Op.like]: '%' + queryForm.intentionalityJob + '%' } });
+      // where[array[0]].push({ intentionality_job3: { [Op.like]: '%' + queryForm.intentionalityJob + '%' } });
+    }
+    if (queryForm.intentionalityJob2 != '' && queryForm.intentionalityJob2 != null) {
+      where.intentionality_job2 = { [Op.like]: '%' + queryForm.intentionalityJob2 + '%' };
+    }
+    if (queryForm.intentionalityJob3 != '' && queryForm.intentionalityJob3 != null) {
+      where.intentionality_job3 = { [Op.like]: '%' + queryForm.intentionalityJob3 + '%' };
     }
     if (queryForm.sort === 0) {
       order.push(['created_at', 'DESC']);
