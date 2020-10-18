@@ -51,6 +51,48 @@ class RoleService extends Service {
       }
     }    
   }
+
+  /**
+   * 解绑微信openid
+   * @param {string} operateUserid 
+   * @param {string} unbundUserid 
+   */
+  async unbundOpenid(operateUserid,unbundUserid) {
+    const { ctx } = this;
+    const role =await ctx.model.Role.findOne({
+      where:{
+        userid:operateUserid
+      }
+    })
+    if (role.role!=0&&role.role!=null&&role.role!='') {
+      const mark = await ctx.model.Role.findOne({
+        where: {
+          userid: unbundUserid
+        }
+      })
+      if (!mark) {
+        ctx.throw(404, { code: 1, message: "查无此数据" })
+      } else {
+        const res = await ctx.model.Role.update({
+          openid: null
+        }, {
+          where: {
+            userid: unbundUserid
+          }
+        })
+        if (res == 0) {
+          ctx.throw(404, { code: 1, message: "解绑失败" })
+        } else {
+          return {
+            code: 0,
+            message: "解绑成功",
+          }
+        }
+      }    
+    } else {
+      ctx.throw(404, { code: 1, message: "权限不足！" })
+    }
+  }
 }
 
 module.exports = RoleService;
