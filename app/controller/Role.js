@@ -35,13 +35,12 @@ class RoleController extends Controller {
    * @summary 解绑微信openid
    * @description 解绑微信openid
    * @router put /api/unbundUserRole
-   * @request query string *operateUserid
-   * @request query string *unbundUserid
+   * @request query string *userid
    * @response 200 Role 解绑成功
    */
   async unbundOpenid() {
     const { ctx, service } = this;
-    ctx.body = await service.role.unbundOpenid(ctx.query.operateUserid,ctx.query.unbundUserid);
+    ctx.body = await service.role.unbundOpenid(ctx.query.userid);
   }
 }
 module.exports = RoleController;
