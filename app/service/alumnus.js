@@ -80,7 +80,7 @@ class AlumnusService extends Service {
 
   async findAll(page, pagesize) {
     const { ctx } = this;
-    const res = await ctx.model.Alumnus.findAll({
+    const res = await ctx.model.Alumnus.findAndCountAll({
       offset: (page - 1) * pagesize,
       limit: pagesize,
     })
