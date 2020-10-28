@@ -123,5 +123,18 @@ class UserController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.user.GetPeaceLCUserInfo(ctx.query.access_token, ctx.query.openid)
   }
+
+
+    /**
+   * @summary V2智慧校园学生信息绑定
+   * @description V2智慧校园学生信息绑定
+   * @router get /api/guet/YQAuth
+   * @request query string *ticket
+   */
+  async SmartCampusIdentityAuthentication(){
+    const {ctx,service} = this;
+    ctx.body = await service.user.SmartCampusIdentityAuthentication(ctx.query.ticket);
+    
+  }
 }
 module.exports = UserController;

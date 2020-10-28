@@ -131,6 +131,20 @@ class UserService extends Service {
     return JSON.parse(res.data.toString())
   }
 
+
+  async SmartCampusIdentityAuthentication(ticket){
+    const {ctx} = this;
+    let url = 'https://cas.guet.edu.cn/cas/serviceValidate?';
+    const query = {
+      'service':'https://yq.guet.edu.cn/cas/app/nrii/labeye/guet/cas/callback/home',
+      'ticket':ticket
+    };
+    url += qs.stringify(query);
+    const res = await ctx.curl(url);
+    let xml = res.data.toString();
+    return xml;
+  }
+
 }
 
 module.exports = UserService;
