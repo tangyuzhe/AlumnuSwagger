@@ -136,7 +136,7 @@ class UserService extends Service {
     const {ctx} = this;
     let url = 'https://cas.guet.edu.cn/cas/serviceValidate?';
     const query = {
-      'service':'https://yq.guet.edu.cn/cas/app/nrii/labeye/guet/cas/callback/home',
+      'service':'https://yq.guet.edu.cn/dept3/api/guet/YQAuth',
       'ticket':ticket
     };
     url += qs.stringify(query);
