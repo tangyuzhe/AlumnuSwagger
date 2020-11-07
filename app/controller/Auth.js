@@ -133,8 +133,12 @@ class UserController extends Controller {
    */
   async SmartCampusIdentityAuthentication(){
     const {ctx,service} = this;
-    ctx.body = await service.user.SmartCampusIdentityAuthentication(ctx.query.ticket);
-    
+    const data  = await service.user.SmartCampusIdentityAuthentication(ctx.query.ticket);
+    if(data){
+      ctx.redirect('http://yq.guet.edu.cn:8080/html5?'+qs.stringify(data))
+    }else{
+      ctx.redirect('http://yq.guet.edu.cn:8080/html5')
+    }
   }
 }
 module.exports = UserController;

@@ -136,13 +136,20 @@ class UserService extends Service {
     const {ctx} = this;
     let url = 'https://cas.guet.edu.cn/cas/serviceValidate?';
     const query = {
-      'service':'https://yq.guet.edu.cn/dept3/api/guet/YQAuth',
+      'service':'http://yq.guet.edu.cn/dept3/api/guet/YQAuth',
       'ticket':ticket
     };
     url += qs.stringify(query);
     const res = await ctx.curl(url);
     let xml = res.data.toString();
-    return xml;
+    let obj = {}
+    if(xml.includes("cas:authenticationSuccess")){
+      let xhindex = xml.indexOf("XHHGH")
+      let identityIndex = xml.indexOf("YHLX")
+      obj.studentId = xml.substr(xhindex+6,10)
+      obj.identity = xml.substr(identityIndex+5,7)
+    }
+    return obj;
   }
 
 }
