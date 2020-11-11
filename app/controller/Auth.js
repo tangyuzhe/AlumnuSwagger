@@ -135,9 +135,9 @@ class UserController extends Controller {
     const {ctx,service} = this;
     const data  = await service.user.SmartCampusIdentityAuthentication(ctx.query.ticket);
     if(data){
-      ctx.redirect('http://yq.guet.edu.cn/dept3?'+qs.stringify(data))
+      ctx.redirect('https://yq.guet.edu.cn/dept3/'+qs.stringify(data))
     }else{
-      ctx.redirect('http://yq.guet.edu.cn:8080/html5')
+      ctx.redirect('https://yq.guet.edu.cn/dept3/#/')
     }
   }
 }
