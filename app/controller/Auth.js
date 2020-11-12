@@ -71,7 +71,7 @@ class UserController extends Controller {
   async getWXAuth() {
     const { ctx, service } = this;
     ctx.body = await service.user.getWXAuth(ctx.query.code)
-    ctx.redirect("http://thesecondclass.linaxhua.cn:8080/#/pages/wxLogin/index?" + qs.stringify(ctx.body));
+    ctx.redirect("https://yq.guet.edu.cn/dept3/" + qs.stringify(ctx.body));
   }
 
   /**
@@ -135,7 +135,7 @@ class UserController extends Controller {
     const {ctx,service} = this;
     const data  = await service.user.SmartCampusIdentityAuthentication(ctx.query.ticket);
     if(data){
-      ctx.redirect('https://yq.guet.edu.cn/dept3/'+qs.stringify(data))
+      ctx.redirect('https://yq.guet.edu.cn/dept3/?'+qs.stringify(data))
     }else{
       ctx.redirect('https://yq.guet.edu.cn/dept3/#/')
     }
