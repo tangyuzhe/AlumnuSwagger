@@ -10,12 +10,12 @@ class RoleController extends Controller {
    * @summary 查询角色
    * @description 获取用户角色
    * @router get /api/userRole
-   * @request query string *userid
+   * @request query string *openid
    * @response 200 Role 查询成功
    */
   async getUserRole() {
     const { ctx, service } = this;
-    ctx.body = await service.role.getUserRole(ctx.query.userid)
+    ctx.body = await service.role.getUserRole(ctx.query.openid)
   }
 
   /**

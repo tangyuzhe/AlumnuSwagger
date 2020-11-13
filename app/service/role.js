@@ -4,13 +4,13 @@ const Service = require('egg').Service;
 class RoleService extends Service {
   /**
    * 查询角色表
-   * @param {*} userid 
+   * @param {*} openid 
    */
-  async getUserRole(userid) {
+  async getUserRole(openid) {
     const { ctx } = this;
     const res = await ctx.model.Role.findOne({
       where: {
-        userid: userid
+        openid: openid
       }
     })
     if (!res) {

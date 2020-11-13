@@ -67,6 +67,11 @@ module.exports = appInfo => {
     },
   };
 
+  config.session = {
+    renew:true,
+    maxAge: 24 * 3600 * 1000,
+  }
+
 
   return config;
 };
