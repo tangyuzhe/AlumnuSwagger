@@ -35,7 +35,7 @@ class UserService extends Service {
       }
     })
     if (!res) {
-      ctx.throw(404, { code: 1, message: '未查询到用户' })
+      ctx.throw(405, { code: 1, message: '未查询到用户' })
     } else {
       return {
         code: 0,

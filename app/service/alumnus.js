@@ -18,13 +18,13 @@ class AlumnusService extends Service {
 
   /**
    * 通过姓名查询
-   * @param {*} alumnuName 
+   * @param {*} stuid 
    */
-  async findAlumnu(alumnuName) {
+  async findAlumnu(stuid) {
     const { ctx } = this;
     const res = await ctx.model.Alumnus.findOne({
       where: {
-        name: alumnuName
+        name: stuid
       }
     })
     if (!res) {

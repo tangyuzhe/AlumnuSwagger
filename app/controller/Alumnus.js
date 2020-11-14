@@ -24,13 +24,13 @@ class AlumnusController extends Controller {
    * @summary 查询校友信息
    * @description 查询校友学校、公司基本信息
    * @router get /api/alumnus/findAlumnu
-   * @request query string *name
+   * @request query string *stuid
    * @response 200 baseResponse 查询成功
    * @apikey
    */
   async findAlumnu() {
     const { ctx, service } = this;
-    ctx.body = await service.alumnus.findAlumnu(ctx.query.name)
+    ctx.body = await service.alumnus.findAlumnu(ctx.query.stuid)
   }
 
   /**
