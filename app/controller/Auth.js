@@ -27,12 +27,12 @@ class UserController extends Controller {
  * @description 用户测试获取token
  * @router post /api/user/Auth
  * @request query string *userid
- * @request query string *name 
+ * @request query string *openid 
  * @response 200 baseResponse 获取成功
  */
   async getToken() {
     const { ctx, service } = this;
-    ctx.body = await service.user.getToken(ctx.query.userid, ctx.query.name)
+    ctx.body = await service.user.getToken(ctx.query.userid, ctx.query.openid)
   }
 
 
