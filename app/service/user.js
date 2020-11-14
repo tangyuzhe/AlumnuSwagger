@@ -24,14 +24,14 @@ class UserService extends Service {
   /**
    * 
    * @param {*} userid 
-   * @param {*} name 
+   * @param {*} openid 
    */
-  async getToken(userid, name) {
+  async getToken(userid, openid) {
     const { ctx } = this;
     const res = await ctx.model.Role.findOne({
       where: {
         userid: userid,
-        name: name
+        openid: openid
       }
     })
     if (!res) {
@@ -40,7 +40,7 @@ class UserService extends Service {
       return {
         code: 0,
         message: '请求成功',
-        token: await ctx.service.token.apply(userid, name)
+        token: await ctx.service.token.apply(userid, openid)
       }
     }
   }
