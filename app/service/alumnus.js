@@ -24,7 +24,7 @@ class AlumnusService extends Service {
     const { ctx } = this;
     const res = await ctx.model.Alumnus.findOne({
       where: {
-        name: stuid
+        student_id: stuid
       }
     })
     if (!res) {
