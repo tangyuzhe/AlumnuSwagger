@@ -107,6 +107,14 @@ class RoleService extends Service {
       "未绑定的人数":unbind.count
     }
   }
+
+  async findAll(current,size){
+    const res = await this.ctx.model.Role.findAndCountAll({
+      offset:(current-1)*size,
+      limit:size
+    });
+    return res;
+  }
 }
 
 module.exports = RoleService;

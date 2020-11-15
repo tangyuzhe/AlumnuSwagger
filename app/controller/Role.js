@@ -53,5 +53,18 @@ class RoleController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.role.StatusOfBindOpenid();
   }
+
+  /**
+   * @summary 学生绑定分页查询
+   * @description 学生绑定分页查询
+   * @router get /api/bindPagination
+   * @request query integer *currentPage
+   * @request query integer *pageSize
+   * @response 200 Role 分页查询
+   */
+  async findAll() {
+    const { ctx, service } = this;
+    ctx.body = await service.role.findAll(Number(ctx.query.currentPage),Number(ctx.query.pageSize));
+  }
 }
 module.exports = RoleController;
