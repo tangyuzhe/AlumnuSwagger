@@ -145,14 +145,18 @@ class UserService extends Service {
       let xml = res.data.toString();
     let obj = {}
     if(xml.includes("cas:authenticationSuccess")){
-      let xhindex = xml.indexOf("XHHGH")
-      let identityIndex = xml.indexOf("YHLX")
-      obj.studentId = xml.substr(xhindex+6,10)
-      obj.identity = xml.substr(identityIndex+5,7)
+      let IdstartIndex = xml.indexOf("<cas:user>")
+      let IdendIndex = xml.indexOf("</cas:user>")
+      const id = xml.substring(IdstartIndex+10,IdendIndex)
+      let identitystartIndex = xml.indexOf("<cas:YHLX>")
+      let identityendIndex = xml.indexOf("</cas:YHLX>")
+      const identity = xml.substring(identitystartIndex+10,identityendIndex)
+      obj.studentId = id;
+      obj.identity = identity
     }
     return obj;
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 
