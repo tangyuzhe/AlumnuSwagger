@@ -10,11 +10,11 @@ module.exports = app => {
       primaryKey: true
     },
     student_id: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(20),
       allowNull: true
     },
     student_name: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(20),
       allowNull: true
     },
     grade: {
@@ -26,15 +26,15 @@ module.exports = app => {
       allowNull: true
     },
     activity_theme: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(30),
       allowNull: true
     },
     registration_time: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.DATE,
       allowNull: true
     },
     signed: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.DATE,
       allowNull: true
     },
     report: {

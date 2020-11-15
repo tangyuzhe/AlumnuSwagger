@@ -10,27 +10,27 @@ module.exports = app => {
       primaryKey: true
     },
     theme: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(30),
       allowNull: true
     },
     start_time: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.DATE,
       allowNull: true
     },
     venue: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(10),
       allowNull: true
     },
     introduction: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     deadline: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.DATE,
       allowNull: true
     },
     remarks: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(20),
       allowNull: true
     },
     capacity: {
