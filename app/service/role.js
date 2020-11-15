@@ -1,6 +1,7 @@
 'use strict';
 const Service = require('egg').Service;
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 class RoleService extends Service {
   /**
    * 查询角色表
@@ -85,6 +86,25 @@ class RoleService extends Service {
           message: "解绑失败"
         }
       }
+    }
+  }
+
+
+  async StatusOfBindOpenid(){
+    const { ctx } = this;
+    const bind = await ctx.model.Role.findAndCountAll({
+      where:{
+        openid:{ [Op.ne]: null }
+      }
+    });
+    const unbind = await ctx.model.Role.findAndCountAll({
+      where:{
+        openid:null
+      }
+    });
+    return {
+      "绑定的人数":bind.count,
+      "未绑定的人数":unbind.count
     }
   }
 }

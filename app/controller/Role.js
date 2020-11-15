@@ -42,5 +42,16 @@ class RoleController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.role.unbundOpenid(ctx.query.userid);
   }
+
+  /**
+   * @summary 绑定人数统计
+   * @description 绑定人数统计
+   * @router get /api/Bindstatistics
+   * @response 200 Role 获取数据统计
+   */
+  async StatusOfBindOpenid() {
+    const { ctx, service } = this;
+    ctx.body = await service.role.StatusOfBindOpenid();
+  }
 }
 module.exports = RoleController;
