@@ -44,16 +44,23 @@ class ActivityService extends Service {
    * @param {*} page 
    * @param {*} pagesize 
    */
-  async getActivityList(page, pagesize) {
+  async getActivityList(page, pagesize,finished,remarks) {
     const { ctx } = this;
-    const res = await ctx.model.Activity.findAll({
+    let query = {};
+    if(finished){
+      query.finished = finished;
+    }
+    if(remarks){
+      query.remarks = remarks;
+    }
+    const res = await ctx.model.Activity.findAndCountAll({
       offset: (page - 1) * pagesize,
-      limit: pagesize
+      limit: pagesize,
+      where:query
     })
     return {
       code: 0,
       data: res,
-      total: res.length,
       message: "查询成功"
     }
   }

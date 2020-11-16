@@ -44,6 +44,8 @@ class ActivityController extends Controller {
    * @router get /api/activities
    * @request query integer *page
    * @request query integer *pagesize
+   * @request query integer finished
+   * @request query string remarks
    * @response 200 Activity 查询成功
    * @apikey
    */
@@ -51,7 +53,9 @@ class ActivityController extends Controller {
     const { ctx, service } = this;
     const page = ctx.query.page;
     const pagesize = parseInt(ctx.query.pagesize);
-    ctx.body = await service.activity.getActivityList(page, pagesize)
+    const finished = ctx.query.finished
+    const remarks = ctx.query.remarks;
+    ctx.body = await service.activity.getActivityList(page, pagesize,finished,remarks)
   }
 
   /**
