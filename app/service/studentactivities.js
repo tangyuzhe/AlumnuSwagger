@@ -121,7 +121,7 @@ class StudentActivitiesService extends Service {
    */
   async findAllStudents(activity_id, page, pagesize) {
     const { ctx } = this;
-    const res = await ctx.model.StudentActivities.findAll({
+    const res = await ctx.model.StudentActivities.findAndCountAll({
       offset: (page - 1) * pagesize,
       limit: pagesize,
       where: {
