@@ -28,7 +28,7 @@ class AlumnusService extends Service {
       }
     })
     if (!res) {
-      ctx.throw(404, { code: 1, message: '该校友未查询到其信息' })
+      ctx.throw(405, { code: 1, message: '该校友未查询到其信息' })
     } else {
       return {
         code: 0,
