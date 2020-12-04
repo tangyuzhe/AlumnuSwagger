@@ -148,6 +148,26 @@ class StudentActivitiesService extends Service {
       data: res.count
     };
   }
+
+  /**
+   * 学生扫码签到
+   */
+  async StudentSign(stuid,activity_id,signed){
+    const { ctx } = this;
+    const res = await ctx.model.StudentActivities.update({
+      signed: signed,
+    }, {
+      where: { 
+         student_id:stuid,
+         activity_id:activity_id
+      }
+    })
+    return {
+      code: 0,
+      data: res,
+      message: "修改成功"
+    }
+  }
 }
 
 

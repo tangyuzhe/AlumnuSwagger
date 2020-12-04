@@ -116,5 +116,23 @@ class StudentActivitiesController extends Controller {
     const activity_id = ctx.query.activity_id;
     ctx.body = await service.studentactivities.CountSignNumber(activity_id);
   }
+
+  /**
+   * @summary 学生扫码签到
+   * @description 学生扫码签到
+   * @router put /api/studentactivity/QrchartSign
+   * @request query string *stuid
+   * @request query integer *activity_id
+   * @request query string *signed
+   * @response 200 StuActivity 修改成功
+   * @apikey
+   */
+  async StudentSign() {
+    const { ctx, service } = this;
+    const stuid = ctx.query.stuid;
+    const activity_id = ctx.query.activity_id;
+    const signed = ctx.query.signed;
+    ctx.body = await service.studentactivities.StudentSign(stuid, activity_id, signed)
+  }
 }
 module.exports = StudentActivitiesController;
