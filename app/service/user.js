@@ -147,7 +147,7 @@ class UserService extends Service {
     if(xml.includes("cas:authenticationSuccess")){
       let IdstartIndex = xml.indexOf("<cas:XHHGH>")
       let IdendIndex = xml.indexOf("</cas:XHHGH>")
-      const id = xml.substring(IdstartIndex+10,IdendIndex)
+      const id = xml.substring(IdstartIndex+11,IdendIndex)
       let identitystartIndex = xml.indexOf("<cas:YHLX>")
       let identityendIndex = xml.indexOf("</cas:YHLX>")
       const identity = xml.substring(identitystartIndex+10,identityendIndex)
