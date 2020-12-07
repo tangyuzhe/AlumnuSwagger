@@ -76,5 +76,17 @@ class AlumnusController extends Controller {
     let pagesize = parseInt(ctx.query.pagesize)
     ctx.body = await service.alumnus.findAll(page, pagesize)
   }
+
+  /**
+   * @summary 查询校友身份证
+   * @description 查询校友身份证
+   * @router get /api/alumnus/findAlumnuCardID
+   * @request query string *stuid
+   * @response 200 baseResponse 查询成功
+   */
+  async findAlumnuCardID() {
+    const { ctx, service } = this;
+    ctx.body = await service.alumnus.findAlumnuCardID(ctx.query.stuid)
+  }
 }
 module.exports = AlumnusController;

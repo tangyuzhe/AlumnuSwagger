@@ -95,6 +95,29 @@ class AlumnusService extends Service {
       }
     }
   }
+
+  /**
+   * 通过学号查询身份证后六位
+   * @param {*} stuid 
+   */
+  async findAlumnuCardID(stuid) {
+    const { ctx } = this;
+    const res = await ctx.model.Alumnus.findOne({
+      attributes:['card_id'],
+      where: {
+        student_id: stuid
+      }
+    })
+    if (!res) {
+      ctx.throw(405, { code: 1, message: '该校友未查询到其信息' })
+    } else {
+      return {
+        code: 0,
+        message: '查询成功',
+        data: res
+      }
+    }
+  }
 }
 
 module.exports = AlumnusService;
