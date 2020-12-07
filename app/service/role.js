@@ -7,12 +7,17 @@ class RoleService extends Service {
    * 查询角色表
    * @param {*} openid 
    */
-  async getUserRole(openid) {
+  async getUserRole(openid,userid) {
     const { ctx } = this;
+    const query = {};
+    if(openid){
+      query.openid = openid;
+    }
+    if(userid){
+      query.userid = userid;
+    }
     const res = await ctx.model.Role.findOne({
-      where: {
-        openid: openid
-      }
+      where: query
     })
     if (!res) {
       ctx.throw(404, { code: 1, message: "查无此数据" })
