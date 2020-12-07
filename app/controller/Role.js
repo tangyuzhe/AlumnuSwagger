@@ -66,5 +66,17 @@ class RoleController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.role.findAll(Number(ctx.query.currentPage),Number(ctx.query.pageSize));
   }
+
+  /**
+   * @summary 角色信息添加
+   * @description 角色信息添加
+   * @router post /api/createRole
+   * @request body Role *body
+   * 
+   */
+  async create(){
+    const { ctx, service } = this;
+    ctx.body = await service.role.create(ctx.request.body);
+  }
 }
 module.exports = RoleController;

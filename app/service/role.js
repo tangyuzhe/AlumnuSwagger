@@ -115,6 +115,12 @@ class RoleService extends Service {
     });
     return res;
   }
+
+  
+  async create(role){
+    const res = await this.ctx.model.Role.create(role);
+    return res;
+  }
 }
 
 module.exports = RoleService;
