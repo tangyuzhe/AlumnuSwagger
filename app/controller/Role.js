@@ -79,5 +79,17 @@ class RoleController extends Controller {
     const { ctx, service } = this;
     ctx.body = await service.role.create(ctx.request.body);
   }
+
+  /**
+   * @summary 解绑
+   * @description 解绑
+   * @router delete /api/delete
+   * @request query integer *id 
+   * 
+   */
+  async destroy(){
+    const { ctx, service } = this;
+    ctx.body = await service.role.destroy(ctx.query.id);
+  }
 }
 module.exports = RoleController;

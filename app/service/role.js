@@ -126,6 +126,15 @@ class RoleService extends Service {
     const res = await this.ctx.model.Role.create(role);
     return res;
   }
+
+  async destroy(id){
+    const res = await this.ctx.model.Role.destroy({
+      where:{
+        id:id
+      }
+    })
+    return res;
+  }
 }
 
 module.exports = RoleService;
