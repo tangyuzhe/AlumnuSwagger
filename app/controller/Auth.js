@@ -1,12 +1,11 @@
-'use strict';
+"use strict";
 
-const Controller = require('egg').Controller;
-const qs = require("qs")
+const Controller = require("egg").Controller;
+const qs = require("qs");
 /**
  * @controller Auth
  */
 class UserController extends Controller {
-
   /**
    * @summary 创建用户
    * @description 创建用户，记录用户账户/密码/类型
@@ -23,18 +22,33 @@ class UserController extends Controller {
   }
 
   /**
- * @summary Auth测试获取token
- * @description 用户测试获取token
- * @router post /api/user/Auth
- * @request query string *userid
- * @request query string *openid 
- * @response 200 baseResponse 获取成功
- */
+   * @summary Auth测试获取token
+   * @description 用户测试获取token
+   * @router post /api/user/Auth
+   * @request query string *userid
+   * @request query string *openid
+   * @response 200 baseResponse 获取成功
+   */
   async getToken() {
     const { ctx, service } = this;
-    ctx.body = await service.user.getToken(ctx.query.userid, ctx.query.openid)
+    ctx.body = await service.user.getToken(ctx.query.userid, ctx.query.openid);
   }
 
+  /**
+   * @summary 教师获取token
+   * @description 教师获取token
+   * @router post /api/user/teacher/Auth
+   * @request query string *account
+   * @request query string *password
+   * @response 200 baseResponse 获取成功
+   */
+  async getTeacherToken() {
+    const { ctx, service } = this;
+    ctx.body = await service.user.getTeacherToken(
+      ctx.query.account,
+      ctx.query.password
+    );
+  }
 
   /**
    * @summary 微信授权
@@ -46,7 +60,10 @@ class UserController extends Controller {
    */
   async WXAccess() {
     const { ctx, service } = this;
-    ctx.body = await service.user.updateOpenid(ctx.query.student_id, ctx.query.openid)
+    ctx.body = await service.user.updateOpenid(
+      ctx.query.student_id,
+      ctx.query.openid
+    );
   }
 
   /**
@@ -58,7 +75,7 @@ class UserController extends Controller {
    */
   async findUser() {
     const { ctx, service } = this;
-    ctx.body = await service.user.findUserInfo(ctx.query.account)
+    ctx.body = await service.user.findUserInfo(ctx.query.account);
   }
 
   /**
@@ -70,21 +87,24 @@ class UserController extends Controller {
    */
   async getWXAuth() {
     const { ctx, service } = this;
-    ctx.body = await service.user.getWXAuth(ctx.query.code)
+    ctx.body = await service.user.getWXAuth(ctx.query.code);
     ctx.redirect("https://yq.guet.edu.cn/dept3/?" + qs.stringify(ctx.body));
   }
 
   /**
- * @summary 平安灵川微信公众号授权
- * @description 授权获取code后进行API请求
- * @router get /api/user/PeaceLCWXCode
- * @request query string *code
- * @response 200 baseResponse 获取成功
- */
+   * @summary 平安灵川微信公众号授权
+   * @description 授权获取code后进行API请求
+   * @router get /api/user/PeaceLCWXCode
+   * @request query string *code
+   * @response 200 baseResponse 获取成功
+   */
   async getWXAuthPeaceLC() {
     const { ctx, service } = this;
     ctx.body = await service.user.getWXAuthPeaceLC(ctx.query.code);
-    ctx.redirect("http://thesecondclass.linaxhua.cn:8081/#/pages/index/index?" + qs.stringify(ctx.body));
+    ctx.redirect(
+      "http://thesecondclass.linaxhua.cn:8081/#/pages/index/index?" +
+        qs.stringify(ctx.body)
+    );
   }
 
   /**
@@ -97,7 +117,10 @@ class UserController extends Controller {
    */
   async getWXInfo() {
     const { ctx, service } = this;
-    ctx.body = await service.user.getInfo(ctx.query.access_token, ctx.query.openid)
+    ctx.body = await service.user.getInfo(
+      ctx.query.access_token,
+      ctx.query.openid
+    );
   }
 
   /**
@@ -108,7 +131,7 @@ class UserController extends Controller {
    */
   async GetPeaceLCToken() {
     const { ctx, service } = this;
-    ctx.body = await service.user.GetPeaceLCToken()
+    ctx.body = await service.user.GetPeaceLCToken();
   }
 
   /**
@@ -121,23 +144,27 @@ class UserController extends Controller {
    */
   async GetPeaceLCUserInfo() {
     const { ctx, service } = this;
-    ctx.body = await service.user.GetPeaceLCUserInfo(ctx.query.access_token, ctx.query.openid)
+    ctx.body = await service.user.GetPeaceLCUserInfo(
+      ctx.query.access_token,
+      ctx.query.openid
+    );
   }
 
-
-    /**
+  /**
    * @summary V2智慧校园学生信息绑定
    * @description V2智慧校园学生信息绑定
    * @router get /api/guet/YQAuth
    * @request query string *ticket
    */
-  async SmartCampusIdentityAuthentication(){
-    const {ctx,service} = this;
-    const data  = await service.user.SmartCampusIdentityAuthentication(ctx.query.ticket);
-    if(data){
-      ctx.redirect('https://yq.guet.edu.cn/dept3/?'+qs.stringify(data))
-    }else{
-      ctx.redirect('https://yq.guet.edu.cn/dept3/#/')
+  async SmartCampusIdentityAuthentication() {
+    const { ctx, service } = this;
+    const data = await service.user.SmartCampusIdentityAuthentication(
+      ctx.query.ticket
+    );
+    if (data) {
+      ctx.redirect("https://yq.guet.edu.cn/dept3/?" + qs.stringify(data));
+    } else {
+      ctx.redirect("https://yq.guet.edu.cn/dept3/#/");
     }
   }
 }
