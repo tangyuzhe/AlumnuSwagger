@@ -1,8 +1,5 @@
 "use strict";
 const Service = require("egg").Service;
-// const UUID = require('uuid');
-// const fs = require('fs');
-// const path = require('path');
 const qs = require("qs");
 
 class UserService extends Service {

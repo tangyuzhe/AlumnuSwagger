@@ -88,7 +88,7 @@ class UserController extends Controller {
   async getWXAuth() {
     const { ctx, service } = this;
     ctx.body = await service.user.getWXAuth(ctx.query.code);
-    ctx.redirect("https://yq.guet.edu.cn/dept3/?" + qs.stringify(ctx.body));
+    ctx.redirect("https://yq.guet.edu.cn/dept3/" + qs.stringify(ctx.body));
   }
 
   /**
@@ -166,6 +166,17 @@ class UserController extends Controller {
     } else {
       ctx.redirect("https://yq.guet.edu.cn/dept3/#/");
     }
+  }
+
+  /**
+   * @summary 微信授权登录
+   * @description 微信授权登录
+   * @router get /api/auth/weixinLogin
+   *
+   */
+  async weixinLogin() {
+    const { ctx, service } = this;
+    ctx.body = await service.authority.weixinLogin();
   }
 }
 module.exports = UserController;
