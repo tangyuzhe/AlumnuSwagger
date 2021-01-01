@@ -169,7 +169,7 @@ class UserController extends Controller {
   }
 
   /**
-   * @summary 微信授权登录
+   * @summary 微信授权登录(更新中)
    * @description 微信授权登录
    * @router get /api/auth/weixinLogin
    *
@@ -177,6 +177,8 @@ class UserController extends Controller {
   async weixinLogin() {
     const { ctx, service } = this;
     ctx.body = await service.authority.weixinLogin();
+    ctx.cookies.set("weixinAuth", ctx.body);
+    ctx.redirect("http://thesecondclass.linaxhua.cn");
   }
 }
 module.exports = UserController;
